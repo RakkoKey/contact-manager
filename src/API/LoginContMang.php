@@ -7,7 +7,7 @@
 	$firstName = "";
 	$lastName = "";
 
-    $conn = new mysqli("localhost???", "ContactMangerUser", "ContactManagerPassword", "ContactManager");
+    $conn = new mysqli("localhost", "ContactMangerUser", "ContactManagerPassword", "contact_manager");
     if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
