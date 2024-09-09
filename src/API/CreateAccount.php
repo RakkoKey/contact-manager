@@ -2,7 +2,7 @@
 
     $inData = getRequestInfo();
 
-    $username = $inData["username"];
+    $login = $inData["login"];
     $password = $inData["password"];
 
     $conn = new mysqli("localhost", "ContactMangerUser", "ContactManagerPassword", "contact_manager");
@@ -12,12 +12,12 @@
 	}
     else
 	{
-        $stmt = $conn->prepare("INSERT into Users (username, password) VALUES(?,?)");
-        $stmt->bind_param("ss", $username, $password);
+        $stmt = $conn->prepare("INSERT into Users (login, password) VALUES(?,?)");
+        $stmt->bind_param("ss", $login, $password);
         $stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+	$stmt->close();
+	$conn->close();
+	returnWithError("");
     }
 
     function getRequestInfo()
