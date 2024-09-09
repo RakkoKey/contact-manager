@@ -1,0 +1,114 @@
+body{
+    font-family: 'Times New Roman';
+}
+.searchbar{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+}
+.searchbar form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.input-wrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+    /*margin-bottom: 10px;*/
+    width: 100%;
+}
+.search-icon{
+    position: absolute;
+    left: 10px;
+    color: darkgrey;
+}
+.input-wrapper input[type="text"] {
+    width: 100%;
+    padding: 5px 10px 5px 30px; /* Adjust padding for the icon */
+    border: 2px solid darkgrey;
+    border-radius: 4px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.searchbar input[type="text"] {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 2px solid darkgrey;
+    border-radius: 4px;
+}
+    
+.searchbar button{
+    padding: 5px 10px;
+    border: 3px solid darkgrey;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+.searchbar button:hover {
+    background-color: #ddd;
+}
+.contacts table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.contacts th, .contacts td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.contacts th {
+    background-color: #f2f2f2;
+}
+.addContact{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.addContact form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.addContactWrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.plus-icon{
+    position: absolute;
+    left: 3px;
+    color: solid black;
+}
+.addContact button{
+    padding: 5px 15px; /* Adjust padding for button size */
+    border: 3px solid darkgrey;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center; /* Center text within the button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; /* Adjust font size as needed */
+}
+.addContact button:hover {
+    background-color: #ddd;
+}
+
+
+.returnLink{
+    width: 100%;
+    text-align: center;
+    border: 2px solid darkgrey;
+    border-radius: 2px;
+    padding: 10px; /* Added padding for better appearance */
+    /*display: inline-block; /* Make sure it wraps text properly */
+    
+}

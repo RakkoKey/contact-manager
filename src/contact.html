@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--TODO: Wasn't sure if we want a separate css file for this-->
+    <link rel="stylesheet" href="contact.css">
+    <!--TODO: Not sure if I need this -->
+    <link rel="loginpage" href="index.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <h1>Contact Manager</h1>
+    <h2>Contacts</h2>
+    <div class="searchbar">
+        <form action="/search-contact">
+            <div class="input-wrapper">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+                <input type="text" placeholder="Search"><br>
+            </div>
+            <button type="submit">Submit</button><br>
+        </form>
+    </div>
+    
+    <div class="contacts">
+        <!--Name, Company, Email, Phone Number-->
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+            </tr>
+            <tr>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+
+            </tr>
+            <tr>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+
+            </tr>
+            <tr>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+                <td>Placeholder</td>
+
+            </tr>
+            
+        </table>
+
+    </div>
+    <div class="addContact">
+        <form action="/add-contact">
+            <div class="addContactWrapper">
+                <span class="plus-icon"><i class="fas fa-plus"></i></span>
+                <button type="Add Contact">Add Contact</button>
+            </div>
+            
+        </form>
+
+    </div>
+</body>
+<footer>
+    <div class="returnLink">
+        <p><small>
+            Return to Login Page - <a href="index.html">Here</a>
+        </small></p>
+    </div>
+</footer>
+
+
+
+
+
+
+</html>
