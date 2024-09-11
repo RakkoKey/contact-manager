@@ -15,7 +15,7 @@
 	}
     else
     {
-        $stmt = $conn->prepare("SELECT FROM Contacts WHERE userID=?");
+        $stmt = $conn->prepare("SELECT firstName, lastName, phoneNumber, email, address FROM Contacts WHERE userID=?");
         $stmt->bind_param("i", $userID);
         $stmt->execute();
 
