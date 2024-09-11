@@ -1,5 +1,5 @@
 body{
-    font-family: 'Times New Roman';
+    font-family: 'Times New Roman', 'Arial';
 }
 .searchbar{
     display: flex;
@@ -16,7 +16,7 @@ body{
     position: relative;
     display: flex;
     align-items: center;
-    /*margin-bottom: 10px;*/
+    margin-bottom: 10px;
     width: 100%;
 }
 .search-icon{
@@ -26,7 +26,7 @@ body{
 }
 .input-wrapper input[type="text"] {
     width: 100%;
-    padding: 5px 10px 5px 30px; /* Adjust padding for the icon */
+    padding: 5px 10px 5px 30px;
     border: 2px solid darkgrey;
     border-radius: 4px;
     text-align: center;
@@ -65,9 +65,16 @@ body{
 .contacts th {
     background-color: #f2f2f2;
 }
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 .addContact{
     margin-top: 20px;
-    display: flex;
+    /*display: flex;*/
     justify-content: center;
     margin-bottom: 20px;
 }
@@ -87,18 +94,96 @@ body{
     color: solid black;
 }
 .addContact button{
-    padding: 5px 15px; /* Adjust padding for button size */
+    padding: 5px 15px; 
     border: 3px solid darkgrey;
     background-color: #f2f2f2;
     cursor: pointer;
     border-radius: 4px;
-    text-align: center; /* Center text within the button */
+    text-align: center; 
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px; /* Adjust font size as needed */
+    font-size: 16px; 
 }
 .addContact button:hover {
+    background-color: #ddd;
+}
+
+/*-------------------------*/
+
+.removeContact{
+    margin-top: 20px;
+    /*display: flex;*/
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.removeContact form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.removeContactWrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.minus-icon{
+    position: absolute;
+    left: 3px;
+    color: solid black;
+}
+.removeContact button{
+    padding: 5px 15px; 
+    border: 3px solid darkgrey;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; 
+}
+.removeContact button:hover {
+    background-color: #ddd;
+}
+
+
+/*--------------------------------*/
+.editContact{
+    margin-top: 20px;
+    /*display: flex;*/
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.editContact form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.editContactWrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.edit-icon{
+    position: absolute;
+    left: 3px;
+    color: solid black;
+}
+.editContact button{
+    padding: 5px 15px; 
+    border: 3px solid darkgrey;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; 
+}
+.editContact button:hover {
     background-color: #ddd;
 }
 
@@ -108,7 +193,7 @@ body{
     text-align: center;
     border: 2px solid darkgrey;
     border-radius: 2px;
-    padding: 10px; /* Added padding for better appearance */
-    /*display: inline-block; /* Make sure it wraps text properly */
+    padding: 10px; 
+    display: inline-block; 
     
 }
