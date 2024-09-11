@@ -18,7 +18,7 @@
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
-            returnWithInfo( $phoneNumber, $firstName, $lastName );
+            returnWithInfo( $firstName, $lastName, $phoneNumber );
         }
         else {
             returnWithError("Contact not found");
