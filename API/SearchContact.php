@@ -23,50 +23,47 @@
 	    
 	if($type == 1){
 
-		echo "type 1 check"; 
-		$stmt = $conn->prepare("CALL SearchContacts(:?)");
+		$stmt = $conn->prepare("CALL SearchContacts(?)");
         	$stmt->bind_param("s", $str1);
         	$stmt->execute();
-
-		echo "type 1 check";               //
 
 		$result = $stmt->get_result();
 	}
 	elseif($type == 3){
 
-		$stmt = $conn->prepare("CALL SearchContactsByPhoneNumber(:?)");
+		$stmt = $conn->prepare("CALL SearchContactsByPhoneNumber(?)");
         	$stmt->bind_param("s", $str1);
         	$stmt->execute();
 
 		$result = $stmt->get_result();
 	}
-	else{
+	elseif($type == 2){
 
-		$stmt = $conn->prepare("CALL SearchContacts(:?)");
+		$stmt = $conn->prepare("CALL SearchContacts(?)");
         	$stmt->bind_param("s", $str1);
         	$stmt->execute();
 
 		$result2 = $stmt->get_result();
 
-		while($row = $result2->fetch_assoc())
+		while($row2 = $result2->fetch_assoc())
 		{
-			if( $row["userID"] == $userID ){
+			if( $row2["userID"] == $userID ){
 				
 				if( $resCount > 0 )
 				{
 					$searchResults .= ",";
 				}
 				$resCount++;
-				$searchResults .= '{"ID":"' . $row["ID"] . '",';
-				$searchResults .= '"firstName":"' . $row["firstName"] . '",';
-				$searchResults .= '"lastName":"' . $row["lastName"] . '",';
-				$searchResults .= '"phoneNumber":"' . $row["phoneNumber"] . '",';
-				$searchResults .= '"email":"' . $row["email"] . '",';
-				$searchResults .= '"address":"' . $row["address"] . '"}';
+				$searchResults .= '{"ID":"' . $row2["ID"] . '",';
+				$searchResults .= '"firstName":"' . $row2["firstName"] . '",';
+				$searchResults .= '"lastName":"' . $row2["lastName"] . '",';
+				$searchResults .= '"phoneNumber":"' . $row2["phoneNumber"] . '",';
+				$searchResults .= '"email":"' . $row2["email"] . '",';
+				$searchResults .= '"address":"' . $row2["address"] . '"}';
 			}
 		}
 
-		$stmt = $conn->prepare("CALL SearchContacts(:?)");
+		$stmt = $conn->prepare("CALL SearchContacts(?)");
         	$stmt->bind_param("s", $str2);
         	$stmt->execute();
 

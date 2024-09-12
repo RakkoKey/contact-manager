@@ -1,7 +1,7 @@
-const urlBase = 'http://cop4331bena.xyz';
+const urlBase = 'http://cop4331bena.xyz/API';
 const extension = 'php';
 
-let userId = 0;
+let userID = 0;
 let firstName = "";
 let lastName = "";
 
@@ -22,14 +22,15 @@ function performLogin(event) {
 
 
 
-    let username = data.get(username)
-    let password = data.get(password);
+    let username = data.get("username")
+    let password = data.get("password");
 
     if (validateForm(username, password)) {
         console.log('Logging in with:', username, password);
         // Add your login API request here
-        verifyLogin(username, password);
+        verifyLogin(username,password);
 
+        
     } else {
         alert('Please enter a valid username and password.');
     }
@@ -84,7 +85,7 @@ function verifyLogin(username, password){
 
 
     let url = urlBase + "/LoginContMang." + extension;
-
+	console.log(data);
     // above is not finished
     //sending payload to php
     let payload = JSON.stringify(data);
@@ -92,14 +93,27 @@ function verifyLogin(username, password){
     let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
+    
     try
 	{
 		xhr.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				console.log("Contact Added");
+                //GET THE DATA
+			    let userJSON = JSON.parse(xhr.responseText);
+                if(userJSON.id == 0){
+                    console.log(userID);
+                    console.log("Invalid Login");
+                    return;
+                }
+                //populate data
+                userID = userJSON.id;
+                firstName = userJSON.firstName;
+                lastName = userJSON.firstName;
+		        window.location.href = "contact.html";
+		
+                console.log("Login Verified!");
 			}
 		};
 		xhr.send(payload);
@@ -108,6 +122,7 @@ function verifyLogin(username, password){
 	{
 		console.log(err.message);
 	}
+    
 }
 
 
@@ -255,9 +270,11 @@ function editContact() {
 /*Figure out logic behind redirecting user if they press return to login button */
 
 /* Attaching event listeners to buttons */
-loginButton.addEventListener('click', performLogin);
+loginButton.addEventListener('submit', performLogin);
+/*
 signupButton.addEventListener('click', performSignup);
 searchButton.addEventListener('click', searchContact);
 addContactButton.addEventListener('click', addContact);
 removeContactButton.addEventListener('click', removeContact);
 editContactButton.addEventListener('click', editContact);
+*/
