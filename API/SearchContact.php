@@ -27,13 +27,11 @@
         	$stmt->bind_param("s", $str1);
         	$stmt->execute();
 
-		echo "type 1 check";               //
-
 		$result = $stmt->get_result();
 	}
 	elseif($type == 3){
 
-		$stmt = $conn->prepare("CALL SearchContactsByPhoneNumber(:?)");
+		$stmt = $conn->prepare("CALL SearchContactsByPhoneNumber(?)");
         	$stmt->bind_param("s", $str1);
         	$stmt->execute();
 
@@ -41,7 +39,7 @@
 	}
 	else{
 
-		$stmt = $conn->prepare("CALL SearchContacts(:?)");
+		$stmt = $conn->prepare("CALL SearchContacts(?)");
         	$stmt->bind_param("s", $str1);
         	$stmt->execute();
 
@@ -65,7 +63,7 @@
 			}
 		}
 
-		$stmt = $conn->prepare("CALL SearchContacts(:?)");
+		$stmt = $conn->prepare("CALL SearchContacts(?)");
         	$stmt->bind_param("s", $str2);
         	$stmt->execute();
 
