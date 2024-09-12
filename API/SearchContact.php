@@ -12,7 +12,7 @@
 
     $resCount = 0;
     $searchResults = "";
-echo 'var_dump($type)';
+echo "var_dump($type)";
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "contact_manager");
     if( $conn->connect_error )
