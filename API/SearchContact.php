@@ -49,7 +49,6 @@
 
 		while($row = $result->fetch_assoc())
 		{
-			echo "while";
 			if( $row["userID"] == $userID ){
 				
 				if( $resCount > 0 )
@@ -67,10 +66,12 @@
 		}
 
 		$stmt = $conn->prepare("CALL SearchContacts(?)");
+		echo "prep2";
         	$stmt->bind_param("s", $str2);
         	$stmt->execute();
 
 		$result = $stmt->get_result();
+		echo "res2";
 		
 	}
 
