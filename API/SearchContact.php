@@ -39,11 +39,13 @@
 	}
 	elseif($type == 2){
 
-		$stmt = $conn->prepare("CALL SearchContacts(?)");
-        	$stmt->bind_param("s", $str1);
-        	$stmt->execute();
+		echo "here";
+		$stmt2 = $conn->prepare("CALL SearchContacts(?)");
+        	$stmt2->bind_param("s", $str1);
+        	$stmt2->execute();
 
-		$result2 = $stmt->get_result();
+		$result2 = $stmt2->get_result();
+		echo "$result2";
 
 		while($row2 = $result2->fetch_assoc())
 		{
