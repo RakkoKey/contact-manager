@@ -15,7 +15,7 @@
 	}
     else
     {
-        $stmt = $conn->prepare("SELECT firstName, lastName, phoneNumber, email, address FROM Contacts WHERE userID=?");
+        $stmt = $conn->prepare("SELECT ID, firstName, lastName, phoneNumber, email, address FROM Contacts WHERE userID=?");
         $stmt->bind_param("i", $userID);
         $stmt->execute();
 
@@ -28,7 +28,8 @@
 			$searchResults .= ",";
 		}
 		$resCount++;
-		$searchResults .= '{"firstName":"' . $row["firstName"] . '",';
+		$searchResults .= '{"ID":"' . $row["ID"] . '",';
+		$searchResults .= '"firstName":"' . $row["firstName"] . '",';
 		$searchResults .= '"lastName":"' . $row["lastName"] . '",';
 		$searchResults .= '"phoneNumber":"' . $row["phoneNumber"] . '",';
 		$searchResults .= '"email":"' . $row["email"] . '",';
