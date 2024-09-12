@@ -45,7 +45,6 @@
 
 		$result = $stmt->get_result();
 		echo "res";
-		echo "$result";
 
 		while($row = $result->fetch_assoc())
 		{
@@ -64,7 +63,9 @@
 				$searchResults .= '"address":"' . $row["address"] . '"}';
 			}
 		}
+		echo "pre";
 		$stmt->close();
+		echo "post";
 
 		$stmt = $conn->prepare("CALL SearchContacts(?)");
 		echo "prep2";
