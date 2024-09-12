@@ -93,7 +93,7 @@ function verifyLogin(username, password){
     let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    var error = '';
+    
     try
 	{
 		xhr.onreadystatechange = function() 
@@ -101,18 +101,17 @@ function verifyLogin(username, password){
 			if (this.readyState == 4 && this.status == 200) 
 			{
                 //GET THE DATA
-			      let	userJSON = JSON.parse(xhr.responseText);
-
-			if(userJSON.id == 0){
-			console.log(userID);
-			console.log("Invalid Login");
-			return;
-			}
-
+			    let userJSON = JSON.parse(xhr.responseText);
+                if(userJSON.id == 0){
+                    console.log(userID);
+                    console.log("Invalid Login");
+                    return;
+                }
+                //populate data
                 userID = userJSON.id;
                 firstName = userJSON.firstName;
                 lastName = userJSON.firstName;
-		window.location.href = "contact.html";
+		        window.location.href = "contact.html";
 		
                 console.log("Login Verified!");
 			}
