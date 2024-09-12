@@ -23,8 +23,7 @@
 	    
 	if($type == 1){
 
-		echo "type 1 check"; 
-		$stmt = $conn->prepare("CALL SearchContacts(:?)");
+		$stmt = $conn->prepare("CALL SearchContacts(?)");
         	$stmt->bind_param("s", $str1);
         	$stmt->execute();
 
