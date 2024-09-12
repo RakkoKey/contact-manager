@@ -5,7 +5,7 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-const loginButton = document.getElementById('loginButton');
+const loginButton = document.getElementById('loginForm');
 const signupButton = document.getElementById('signupButton');
 const searchButton = document.getElementById('searchButton');
 const addContactButton = document.getElementById('addContactButton');
@@ -18,14 +18,17 @@ const editContactButton = document.getElementById('editContactButton');
 /* Function to handle login */
 function performLogin(event) {
     event.preventDefault(); // Prevent form from submitting the default way
+    const data = new FormData(event.target);
 
-    let username = document.getElementById('username').value;
-    let password = document.getElementById('password').value;
+
+
+    let username = data.get(username)
+    let password = data.get(password);
 
     if (validateForm(username, password)) {
         console.log('Logging in with:', username, password);
         // Add your login API request here
-        
+        verifyLogin(username, password);
 
     } else {
         alert('Please enter a valid username and password.');
@@ -41,8 +44,8 @@ function performLogout() {
     // Add more logic to clear user session and redirect
 }
 
-/* Function to handle sign-in (account creation) */
-function performSignin(event) {
+/* Function to handle sign-up (account creation) */
+function performSignup(event) {
     console.log('Creating new account...');
     // Add sign-in logic here
 }
@@ -72,6 +75,41 @@ function searchContact(event) {
     console.log('Searching for:', searchQuery);
     // Add search logic
 }
+
+function verifyLogin(username, password){
+    let data = {
+        login: username,
+        password: password,
+    }
+
+
+    let url = urlBase + "/LoginContMang." + extension;
+
+    // above is not finished
+    //sending payload to php
+    let payload = JSON.stringify(data);
+
+    let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				console.log("Contact Added");
+			}
+		};
+		xhr.send(payload);
+	}
+	catch(err)
+	{
+		console.log(err.message);
+	}
+}
+
 
 /* Function to validate login form */
 function validateForm(username, password) {
@@ -181,7 +219,7 @@ function editContact() {
 
 /* Attaching event listeners to buttons */
 loginButton.addEventListener('click', performLogin);
-signupButton.addEventListener('click', performSignin);
+signupButton.addEventListener('click', performSignup);
 searchButton.addEventListener('click', searchContact);
 addContactButton.addEventListener('click', addContact);
 removeContactButton.addEventListener('click', removeContact);
