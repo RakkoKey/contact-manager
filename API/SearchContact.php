@@ -64,6 +64,7 @@
 				$searchResults .= '"address":"' . $row["address"] . '"}';
 			}
 		}
+		$stmt->close();
 
 		$stmt = $conn->prepare("CALL SearchContacts(?)");
 		echo "prep2";
