@@ -219,14 +219,14 @@ function editContact() {
     let contactId = document.getElementById('contactId').value; 
     
     let updatedName = document.getElementById('updatedName').value;
-    let updatedCompany = document.getElementById('updatedCompany').value;
+    let updatedAddress = document.getElementById('updatedAddress').value;
     let updatedEmail = document.getElementById('updatedEmail').value;
     let updatedPhone = document.getElementById('updatedPhone').value;
 
     console.log("Editing contact info");
 
     //Make sure user input is valid:
-    if(!contactId || !updatedName || !updatedCompany || !updatedEmail || !updatedPhone){
+    if(!contactId || !updatedName || !updatedAddress || !updatedEmail || !updatedPhone){
         alert('Please fill in all required fields.')
     }
 
@@ -234,7 +234,7 @@ function editContact() {
     let userData = {
         id: contactId,
         name: updatedName,
-        company: updatedCompany,
+        address: updatedAddress,
         email: updatedEmail,
         phone: updatedPhone
     };
