@@ -39,10 +39,12 @@
 	}
 	elseif($type == 2){
 
-		echo "here";
 		$stmt2 = $conn->prepare("CALL SearchContacts(?)");
+		echo "prep";
         	$stmt2->bind_param("s", $str1);
+		echo "bind";
         	$stmt2->execute();
+		echo "ex";
 
 		$result2 = $stmt2->get_result();
 		echo "$result2";
