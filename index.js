@@ -209,7 +209,6 @@ function removeContact() {
 
 /* Function to edit a contact */
 function editContact() {
-    console.log('Editing contact...');
     // Add logic to handle editing a contact
     
 
@@ -223,21 +222,43 @@ function editContact() {
     let updatedEmail = document.getElementById('updatedEmail').value;
     let updatedPhone = document.getElementById('updatedPhone').value;
 
-    console.log("Editing contact info");
+    console.log("Editing contact info with ID", contactId);
 
     //Make sure user input is valid:
-    if(!contactId || !updatedName || !updatedAddress || !updatedEmail || !updatedPhone){
-        alert('Please fill in all required fields.')
+    if(!contactId){
+        alert('Contact ID is required to edit.');
+        return;
     }
 
     //Store all new data:
-    let userData = {
-        id: contactId,
-        name: updatedName,
-        address: updatedAddress,
-        email: updatedEmail,
-        phone: updatedPhone
+    let data = {
+        id: contactId
     };
+
+    //Process if data fields are empty, 
+    //if so then enable user to add to the data object.
+    if(updatedName) {
+        data.name = updatedName;
+    }
+
+    if(updatedAddress) {
+        data.address = updatedAddress;
+    }
+
+    if(updatedEmail) {
+        data.email =updatedEmail;
+    }
+    if(updatedPhone) {
+        data.phone = updatedPhone;
+    }
+
+    //Check if a field was updated
+    // Because only key would be'id' if this is true (no update made)
+    if(Object.keys(data).length === 1) {
+        alert('User did not make any changes.');
+        return;
+    }
+
 
 
     //Sending payload to PHP 
