@@ -39,29 +39,30 @@
 	}
 	elseif($type == 2){
 
-		$stmt2 = $conn->prepare("CALL SearchContacts(?)");
-        	$stmt2->bind_param("s", $str1);
-        	$stmt2->execute();
+		$stmt = $conn->prepare("CALL SearchContacts(?)");
+        	$stmt->bind_param("s", $str1);
+        	$stmt->execute();
 
-		$result2 = $stmt2->get_result();
+		$result = $stmt->get_result();
 		echo "res";
-		echo "$result2";
+		echo "$result";
 
-		while($row2 = $result2->fetch_assoc())
+		while($row = $result->fetch_assoc())
 		{
-			if( $row2["userID"] == $userID ){
+			echo "while";
+			if( $row["userID"] == $userID ){
 				
 				if( $resCount > 0 )
 				{
 					$searchResults .= ",";
 				}
 				$resCount++;
-				$searchResults .= '{"ID":"' . $row2["ID"] . '",';
-				$searchResults .= '"firstName":"' . $row2["firstName"] . '",';
-				$searchResults .= '"lastName":"' . $row2["lastName"] . '",';
-				$searchResults .= '"phoneNumber":"' . $row2["phoneNumber"] . '",';
-				$searchResults .= '"email":"' . $row2["email"] . '",';
-				$searchResults .= '"address":"' . $row2["address"] . '"}';
+				$searchResults .= '{"ID":"' . $row["ID"] . '",';
+				$searchResults .= '"firstName":"' . $row["firstName"] . '",';
+				$searchResults .= '"lastName":"' . $row["lastName"] . '",';
+				$searchResults .= '"phoneNumber":"' . $row["phoneNumber"] . '",';
+				$searchResults .= '"email":"' . $row["email"] . '",';
+				$searchResults .= '"address":"' . $row["address"] . '"}';
 			}
 		}
 
