@@ -5,6 +5,16 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+const loginButton = document.getElementById('loginButton');
+const signupButton = document.getElementById('signupButton');
+const searchButton = document.getElementById('searchButton');
+const addContactButton = document.getElementById('addContactButton');
+const removeContactButton = document.getElementById('removeContactButton');
+const editContactButton = document.getElementById('editContactButton');
+
+
+
+
 /* Function to handle login */
 function performLogin(event) {
     event.preventDefault(); // Prevent form from submitting the default way
@@ -77,6 +87,8 @@ function clearForm() {
 function addContact() {
     console.log('Adding contact...');
     // Add logic to handle adding a contact
+
+    //Sending payload to PHP 
     let url = urlBase + "/AddContact." + extension;
     let payload = JSON.stringify(data);
 
@@ -106,6 +118,8 @@ function addContact() {
 function removeContact() {
     console.log('Removing contact...');
     // Add logic to handle removing a contact
+
+    //Sending payload to PHP 
     let url = urlBase + "/DeleteContact." + extension;
     let payload = JSON.stringify(data);
     let xhr = new XMLHttpRequest();
@@ -135,6 +149,9 @@ function removeContact() {
 function editContact() {
     console.log('Editing contact...');
     // Add logic to handle editing a contact
+
+
+    //Sending payload to PHP 
     let url = urlBase + "/EditContact." + extension;
     let payload = JSON.stringify(data);
     let xhr = new XMLHttpRequest();
@@ -163,9 +180,9 @@ function editContact() {
 /*Figure out logic behind redirecting user if they press return to login button */
 
 /* Attaching event listeners to buttons */
-document.getElementById('loginButton').addEventListener('click', performLogin);
-document.getElementById('signupButton').addEventListener('click', performSignin);
-document.getElementById('searchButton').addEventListener('click', searchContact);
-document.getElementById('addContactButton').addEventListener('click', addContact);
-document.getElementById('removeContactButton').addEventListener('click', removeContact);
-document.getElementById('editContactButton').addEventListener('click', editContact);
+loginButton.addEventListener('click', performLogin);
+signupButton.addEventListener('click', performSignin);
+searchButton.addEventListener('click', searchContact);
+addContactButton.addEventListener('click', addContact);
+removeContactButton.addEventListener('click', removeContact);
+editContactButton.addEventListener('click', editContact);
