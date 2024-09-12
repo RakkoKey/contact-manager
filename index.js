@@ -15,6 +15,8 @@ function performLogin(event) {
     if (validateForm(username, password)) {
         console.log('Logging in with:', username, password);
         // Add your login API request here
+        
+
     } else {
         alert('Please enter a valid username and password.');
     }
@@ -120,7 +122,27 @@ function removeContact() {
 function editContact() {
     console.log('Editing contact...');
     // Add logic to handle editing a contact
+    let url = urlBase + "/EditContact." + extension;
+    let payload = JSON.stringify(data);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", urk, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+
+    }
+    catch(err)
+    {
+
+    }
+    
+
+    //will call load contact function at the end
+    loadContacts();
 }
+
+/*Figure out logic behind redirecting user if they press return to login button */
 
 /* Attaching event listeners to buttons */
 document.getElementById('loginButton').addEventListener('click', performLogin);
