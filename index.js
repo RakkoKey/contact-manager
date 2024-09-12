@@ -28,9 +28,12 @@ function performLogin(event) {
     if (validateForm(username, password)) {
         console.log('Logging in with:', username, password);
         // Add your login API request here
-        verifyLogin(username, password);
+        if(verifyLogin(username, password)){
+            window.location.href = "contact.html";
+        }
+
         //change window
-        window.location.href = "color.html";
+        
     } else {
         alert('Please enter a valid username and password.');
     }
@@ -93,7 +96,7 @@ function verifyLogin(username, password){
     let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
+    var userJSON;
     try
 	{
 		xhr.onreadystatechange = function() 
@@ -101,7 +104,7 @@ function verifyLogin(username, password){
 			if (this.readyState == 4 && this.status == 200) 
 			{
                 //GET THE DATA
-				let userJSON = JSON.parse(xhr.responseText);
+				userJSON = JSON.parse(xhr.responseText);
                 userID = userJSON.id;
                 firstName = userJSON.firstName;
                 lastName = userJSON.firstName;
@@ -114,6 +117,10 @@ function verifyLogin(username, password){
 	{
 		console.log(err.message);
 	}
+    if(userJSON.error != ''){
+        return false;
+    }
+    return true;
 }
 
 
