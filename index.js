@@ -1,7 +1,7 @@
 const urlBase = 'http://cop4331bena.xyz';
 const extension = 'php';
 
-let userId = 0;
+let userID = 0;
 let firstName = "";
 let lastName = "";
 
@@ -29,7 +29,8 @@ function performLogin(event) {
         console.log('Logging in with:', username, password);
         // Add your login API request here
         verifyLogin(username, password);
-
+        //change window
+        window.location.href = "color.html";
     } else {
         alert('Please enter a valid username and password.');
     }
@@ -99,7 +100,12 @@ function verifyLogin(username, password){
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				console.log("Contact Added");
+                //GET THE DATA
+				let userJSON = JSON.parse(xhr.responseText);
+                userID = userJSON.id;
+                firstName = userJSON.firstName;
+                lastName = userJSON.firstName;
+                console.log("Login Verified!");
 			}
 		};
 		xhr.send(payload);
