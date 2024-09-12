@@ -2,6 +2,7 @@
 	//Searches for 1: First name or last name
 	//	       2: First name and last name
 	//	       3: phone number
+    echo '{"m":"start"}';
 
     $inData = getRequestInfo();
 
@@ -27,7 +28,7 @@
         	$stmt->bind_param("s", $str1);
         	$stmt->execute();
 
-		echo "type 1 check";
+		echo "type 1 check";               //
 
 		$result = $stmt->get_result();
 	}
