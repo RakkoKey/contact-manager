@@ -71,13 +71,12 @@
         	$stmt->execute();
 
 		$result = $stmt->get_result();
-		print_r($exIDs);
 		
 	}
 
 	while($row = $result->fetch_assoc())
 	{
-		if( $row["userID"] == $userID ){
+		if( $row["userID"] == $userID && !in_array($row["ID"], $exIDs) ){
 		
 			if( $resCount > 0 )
 			{
