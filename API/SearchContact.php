@@ -11,6 +11,7 @@
     $str2 = $inData["str2"];
 
     $resCount = 0;
+    $exIDs = [];
     $searchResults = "";
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "contact_manager");
@@ -44,7 +45,6 @@
         	$stmt->execute();
 
 		$result = $stmt->get_result();
-		echo "res";
 
 		while($row = $result->fetch_assoc())
 		{
@@ -55,6 +55,7 @@
 					$searchResults .= ",";
 				}
 				$resCount++;
+				array_push($exIDs, $row["ID"]);
 				$searchResults .= '{"ID":"' . $row["ID"] . '",';
 				$searchResults .= '"firstName":"' . $row["firstName"] . '",';
 				$searchResults .= '"lastName":"' . $row["lastName"] . '",';
@@ -63,17 +64,14 @@
 				$searchResults .= '"address":"' . $row["address"] . '"}';
 			}
 		}
-		echo "pre";
 		$stmt->close();
-		echo "post";
 
 		$stmt = $conn->prepare("CALL SearchContacts(?)");
-		echo "prep2";
         	$stmt->bind_param("s", $str2);
         	$stmt->execute();
 
 		$result = $stmt->get_result();
-		echo "res2";
+		echo "$exIDs";
 		
 	}
 
