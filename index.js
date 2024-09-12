@@ -1,4 +1,4 @@
-const urlBase = 'http://cop4331bena.xyz';
+const urlBase = 'http://cop4331bena.xyz/API';
 const extension = 'php';
 
 let userID = 0;
@@ -22,8 +22,8 @@ function performLogin(event) {
 
 
 
-    let username = data.get(username)
-    let password = data.get(password);
+    let username = data.get("username")
+    let password = data.get("password");
 
     if (validateForm(username, password)) {
         console.log('Logging in with:', username, password);
@@ -231,9 +231,11 @@ function editContact() {
 /*Figure out logic behind redirecting user if they press return to login button */
 
 /* Attaching event listeners to buttons */
-loginButton.addEventListener('click', performLogin);
+loginButton.addEventListener('submit', performLogin);
+/*
 signupButton.addEventListener('click', performSignup);
 searchButton.addEventListener('click', searchContact);
 addContactButton.addEventListener('click', addContact);
 removeContactButton.addEventListener('click', removeContact);
 editContactButton.addEventListener('click', editContact);
+*/
