@@ -12,8 +12,6 @@
 
     $resCount = 0;
     $searchResults = "";
-$x = var_dump($type);
-echo "$x";
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "contact_manager");
     if( $conn->connect_error )
@@ -22,7 +20,7 @@ echo "$x";
 	}
     else
     {    	//Check for type of search
-	    
+	    echo "con su";
 	if($type == 1){
 
 		$stmt = $conn->prepare("CALL SearchContacts(:?)");
