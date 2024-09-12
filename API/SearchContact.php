@@ -44,6 +44,7 @@
         	$stmt->execute();
 
 		$result2 = $stmt->get_result();
+		echo "$result2";
 
 		while($row2 = $result2->fetch_assoc())
 		{
