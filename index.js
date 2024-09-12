@@ -42,10 +42,15 @@ function isLoggedIn() {
     return userId !== 0;
 }
 
-/* Function to load contacts */
+/* Wrapper function for displayContacts() to load contacts */
 function loadContacts() {
     console.log('Loading contacts...');
     // Get contacts from API and display them
+}
+
+/* Will be a function to display the contact table */
+function displayContacts() {
+    
 }
 
 /* Function to search contacts */
@@ -53,7 +58,7 @@ function searchContact(event) {
     event.preventDefault();
     
      
-    let searchQuery = document.getElementById('searchInput').value;
+    let searchQuery = document.getElementById('searchForm').value;
     console.log('Searching for:', searchQuery);
     // Add search logic
 }
@@ -61,6 +66,11 @@ function searchContact(event) {
 /* Function to validate login form */
 function validateForm(username, password) {
     return username !== '' && password !== '';
+}
+
+/*Function to clear a form */
+function clearForm() {
+
 }
 
 /* Function to add a contact */
@@ -89,6 +99,7 @@ function addContact() {
 	{
 		console.log(err.message);
 	}
+    loadContacts();
 }
 
 /* Function to remove a contact */
@@ -116,6 +127,8 @@ function removeContact() {
 	{
 		console.log(err.message);
 	}
+
+    loadContacts();
 }
 
 /* Function to edit a contact */
@@ -130,14 +143,19 @@ function editContact() {
 
     try
     {
-
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                console.log("Contact Edited");
+            }    
+        }
     }
     catch(err)
     {
-
+        console.log(err.message);
     }
     
-
     //will call load contact function at the end
     loadContacts();
 }
