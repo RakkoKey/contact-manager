@@ -49,6 +49,66 @@ function performLogout() {
 function performSignup(event) {
     console.log('Creating new account...');
     // Add sign-in logic here
+    event.preventDefault();
+    const data = new FormData(event.target);
+    let username = data.get("username");
+    let password = data.get("password");
+
+    if(validateForm(username, password)){
+        console.log('Signing up with:', username, password);
+        verifySignUp(username, password);
+    }
+    else {
+        alert('Please enter valid user sign-in credentials.')
+    }
+}
+
+function verifySignUp(username, password){
+    let data = {
+        login: username,
+        password: password,
+    }
+
+
+    let url = urlBase + "/SignUpContMang." + extension;
+	console.log(data);
+    // above is not finished
+    //sending payload to php
+    let payload = JSON.stringify(data);
+
+    let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    
+    try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+                //GET THE DATA
+			    let userJSON = JSON.parse(xhr.responseText);
+                if(userJSON.id == 0){
+                    console.log(userID);
+                    console.log("Invalid Login");
+                    return;
+                }
+                //populate data
+                userID = userJSON.id;
+                firstName = userJSON.firstName;
+                lastName = userJSON.firstName;
+		        window.location.href = "contact.html";
+		
+                console.log("Login Verified!");
+			}
+		};
+		xhr.send(payload);
+	}
+	catch(err)
+	{
+		console.log(err.message);
+	}
+    
 }
 
 /* Function to verify if the user is logged in */
@@ -60,6 +120,11 @@ function isLoggedIn() {
 function loadContacts() {
     console.log('Loading contacts...');
     // Get contacts from API and display them
+    const storedContacts = localStorage.getItem("contacts");
+    if(storedContacts) {
+        contacts = JSON.parse(storedContacts);
+    }
+    return displayContacts(storedContacts);
 }
 
 /* Will be a function to display the contact table */
@@ -137,9 +202,21 @@ function clearForm() {
 }
 
 /* Function to add a contact */
-function addContact() {
+function addContact(event) {
     console.log('Adding contact...');
     // Add logic to handle adding a contact
+    event.preventDefault();
+    const data = new FormData(event.target);
+
+    let contactName = data.get("name");
+    let contactAddress = data.get("address");
+    let contactEmail = data.get("email");
+    let contactPhone = data.get("phone");
+
+    if(!contactName || !contactPhone || !contactEmail) {
+        alert('Please enter all contact details.');
+        return;
+    }
 
     //Sending payload to PHP 
     let url = urlBase + "/AddContact." + extension;
