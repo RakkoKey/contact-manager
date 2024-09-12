@@ -27,6 +27,8 @@
         	$stmt->bind_param("s", $str1);
         	$stmt->execute();
 
+		echo "type 1 check";
+
 		$result = $stmt->get_result();
 	}
 	elseif($type == 3){
