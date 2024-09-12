@@ -71,7 +71,7 @@
         	$stmt->execute();
 
 		$result = $stmt->get_result();
-		echo "$exIDs";
+		print_r($exIDs);
 		
 	}
 
