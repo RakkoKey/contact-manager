@@ -2,7 +2,6 @@
 	//Searches for 1: First name or last name
 	//	       2: First name and last name
 	//	       3: phone number
-    echo '{"m":"start"}';
 
     $inData = getRequestInfo();
 
@@ -13,6 +12,7 @@
 
     $resCount = 0;
     $searchResults = "";
+echo "vars good";
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "contact_manager");
     if( $conn->connect_error )
