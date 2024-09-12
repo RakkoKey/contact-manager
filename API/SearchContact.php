@@ -11,6 +11,7 @@
     $str2 = $inData["str2"];
 
     $resCount = 0;
+    $exIDs = [];
     $searchResults = "";
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "contact_manager");
@@ -39,31 +40,31 @@
 	}
 	elseif($type == 2){
 
-		echo "here";
-		$stmt2 = $conn->prepare("CALL SearchContacts(?)");
-        	$stmt2->bind_param("s", $str1);
-        	$stmt2->execute();
+		$stmt = $conn->prepare("CALL SearchContacts(?)");
+        	$stmt->bind_param("s", $str1);
+        	$stmt->execute();
 
-		$result2 = $stmt2->get_result();
-		echo "$result2";
+		$result = $stmt->get_result();
 
-		while($row2 = $result2->fetch_assoc())
+		while($row = $result->fetch_assoc())
 		{
-			if( $row2["userID"] == $userID ){
+			if( $row["userID"] == $userID ){
 				
 				if( $resCount > 0 )
 				{
 					$searchResults .= ",";
 				}
 				$resCount++;
-				$searchResults .= '{"ID":"' . $row2["ID"] . '",';
-				$searchResults .= '"firstName":"' . $row2["firstName"] . '",';
-				$searchResults .= '"lastName":"' . $row2["lastName"] . '",';
-				$searchResults .= '"phoneNumber":"' . $row2["phoneNumber"] . '",';
-				$searchResults .= '"email":"' . $row2["email"] . '",';
-				$searchResults .= '"address":"' . $row2["address"] . '"}';
+				array_push($exIDs, $row["ID"]);
+				$searchResults .= '{"ID":"' . $row["ID"] . '",';
+				$searchResults .= '"firstName":"' . $row["firstName"] . '",';
+				$searchResults .= '"lastName":"' . $row["lastName"] . '",';
+				$searchResults .= '"phoneNumber":"' . $row["phoneNumber"] . '",';
+				$searchResults .= '"email":"' . $row["email"] . '",';
+				$searchResults .= '"address":"' . $row["address"] . '"}';
 			}
 		}
+		$stmt->close();
 
 		$stmt = $conn->prepare("CALL SearchContacts(?)");
         	$stmt->bind_param("s", $str2);
@@ -75,7 +76,7 @@
 
 	while($row = $result->fetch_assoc())
 	{
-		if( $row["userID"] == $userID ){
+		if( $row["userID"] == $userID && !in_array($row["ID"], $exIDs) ){
 		
 			if( $resCount > 0 )
 			{
