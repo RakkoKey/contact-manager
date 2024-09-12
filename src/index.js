@@ -65,12 +65,55 @@ function validateForm(username, password) {
 function addContact() {
     console.log('Adding contact...');
     // Add logic to handle adding a contact
+    let url = urlBase + "/AddContact." + extension;
+    let payload = JSON.stringify(data);
+
+    let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				console.log("Contact Added");
+			}
+		};
+		xhr.send(payload);
+	}
+	catch(err)
+	{
+		console.log(err.message);
+	}
 }
 
 /* Function to remove a contact */
 function removeContact() {
     console.log('Removing contact...');
     // Add logic to handle removing a contact
+    let url = urlBase + "/DeleteContact." + extension;
+    let payload = JSON.stringify(data);
+    let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				console.log("Contact Deleted");
+			}
+		};
+		xhr.send(payload);
+	}
+	catch(err)
+	{
+		console.log(err.message);
+	}
 }
 
 /* Function to edit a contact */
