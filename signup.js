@@ -10,6 +10,8 @@ function signup(event){
     let username = data.get("username");
     let password = data.get("password");
 
+
+    if()
     data = {
         firstName: firstName,
         lastName: lastName,
@@ -36,6 +38,7 @@ function signup(event){
 			{
 				console.log("added to database");
                 //go back to login
+                window.location.href = "index.html";
 
 			}
 		};
