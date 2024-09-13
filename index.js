@@ -15,6 +15,7 @@ const editContactButton = document.getElementById('editContactButton');
 
 
 
+
 /* Function to handle login */
 function performLogin(event) {
     event.preventDefault(); // Prevent form from submitting the default way
@@ -128,8 +129,27 @@ function loadContacts() {
 }
 
 /* Will be a function to display the contact table */
-function displayContacts() {
-    
+function displayContacts(contacts) { //the contacts to display
+    const contactsTable = document.getElementById('contactTable');
+    for(let i = 0; i < contacts.length; i++){
+        var newContactRow = document.createElement("tr");
+
+        let name = document.createElement("td");
+        let address = document.createElement("td");
+        let email = document.createElement("td");
+        let phoneNumber = document.createElement("td");
+
+        let nameString = contacts[i].firstName + " " + contacts[i].lastName;
+        name.innerHTML = nameString;
+
+        address.innerHTML = contacts[i].address;
+        email.innerHTML = contacts[i].email;
+        phoneNumber.innerHTML = contacts[i].phoneNumber;
+
+        newContactRow.append(name, address, email, phoneNumber);
+
+        contactsTable.appendChild(newContactRow);
+    }
 }
 
 /* Function to search contacts */
