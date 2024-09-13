@@ -9,13 +9,13 @@ function signup(event){
     let lastName = data.get("lastName");
     let username = data.get("username");
     let password = data.get("password");
-
+    console.log(firstName);
 
     if(!firstName || !lastName || !username || !password){
         console.log("Invalid Fields");
         return; 
     }
-    
+
     data = {
         firstName: firstName,
         lastName: lastName,
