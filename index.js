@@ -130,24 +130,39 @@ function loadContacts() {
 
 /* Will be a function to display the contact table */
 function displayContacts(contacts) { //the contacts to display
+
+    //we want to get the element that holds all the contacts
     const contactsTable = document.getElementById('contactTable');
+
+    //for loop that loops through array
     for(let i = 0; i < contacts.length; i++){
         var newContactRow = document.createElement("tr");
-
+        //create the table data
         let name = document.createElement("td");
         let address = document.createElement("td");
         let email = document.createElement("td");
         let phoneNumber = document.createElement("td");
 
-        let nameString = contacts[i].firstName + " " + contacts[i].lastName;
-        name.innerHTML = nameString;
+        let deleteButton = document.createElement("button");
+        deleteButton.addEventListener('click',function del(){
+            //remove contact from database
+            removeContact(contacts[i]);
 
+            //delete contact from DOM
+            
+        })
+
+
+        //combining the first and last name into one string
+        let nameString = contacts[i].firstName + " " + contacts[i].lastName;
+        //populate the table data
+        name.innerHTML = nameString;
         address.innerHTML = contacts[i].address;
         email.innerHTML = contacts[i].email;
         phoneNumber.innerHTML = contacts[i].phoneNumber;
 
-        newContactRow.append(name, address, email, phoneNumber);
-
+        //put the new data onto the website
+        newContactRow.append(name, address, email, phoneNumber, deleteButton);
         contactsTable.appendChild(newContactRow);
     }
 }
