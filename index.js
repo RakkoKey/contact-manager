@@ -298,7 +298,7 @@ function addContact(event) {
 
     //Sending payload to PHP 
     let url = urlBase + "/AddContact." + extension;
-    let payload = JSON.stringify(data);
+    let payload = JSON.stringify(contactData);
 
     let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -327,23 +327,26 @@ function addContact(event) {
 function removeContact() {
     
     // Add logic to handle removing a contact
-    let contactId = documentById('contactId').value;
+    //let contactId = documentById('contactId').value;
+    let contactPhone = documentById('contactPhone').value;
+    let contactFirstName = documentById('contactFirstName').value;
+    let contactLastName = documentById('contactLastName').value;
+
 
     console.log('Removing contact...');
 
-    if(!contactId) {
-        alert("Please provide a valid ContactID to remove.");
-        return;
-    }
+   
     
-    let data = {
-        id: contactId
+    let contactData = {
+        firstName: contactFirstName,
+        lastName: contactLastName,
+        phone: contactPhone
     };
 
 
     //Sending payload to PHP 
     let url = urlBase + "/DeleteContact." + extension;
-    let payload = JSON.stringify(data);
+    let payload = JSON.stringify(contactData);
     let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
