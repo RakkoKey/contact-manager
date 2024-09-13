@@ -177,8 +177,40 @@ function searchContact(event) {
     
      
     let searchQuery = document.getElementById('searchForm').value;
+
+    if(!searchQuery) {
+        alert('Please enter valid search.');
+        return;
+    }
     console.log('Searching for:', searchQuery);
     // Add search logic
+    let url = urlBase + "/SearchContacts." + extension;
+    let data = {query: searchQuery};
+    let payload = JSON.stringify(data);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200){
+                let response = JSON.parse(xhr.responseText);
+
+                if(response.contacts) {
+                    displayContacts(response.contacts);
+                }
+                else {
+                    alert('Contact not found.');
+                }
+            }
+        };
+        xhr.send(payload);
+    } 
+    catch (err) {
+        console.log(err.message);
+    }
+
 }
 
 function verifyLogin(username, password){
@@ -257,6 +289,13 @@ function addContact(event) {
         return;
     }
 
+    let contactData = {
+        name: contactName,
+        address: contactAddress,
+        email: contactEmail,
+        phone: contactPhone
+    };
+
     //Sending payload to PHP 
     let url = urlBase + "/AddContact." + extension;
     let payload = JSON.stringify(data);
@@ -272,6 +311,7 @@ function addContact(event) {
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				console.log("Contact Added");
+                loadContacts();
 			}
 		};
 		xhr.send(payload);
@@ -280,7 +320,7 @@ function addContact(event) {
 	{
 		console.log(err.message);
 	}
-    loadContacts();
+    //loadContacts();
 }
 
 /* Function to remove a contact */
@@ -295,6 +335,10 @@ function removeContact() {
         alert("Please provide a valid ContactID to remove.");
         return;
     }
+    
+    let data = {
+        id: contactId
+    };
 
 
     //Sending payload to PHP 
@@ -311,6 +355,7 @@ function removeContact() {
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				console.log("Contact Deleted");
+                loadContacts();
 			}
 		};
 		xhr.send(payload);
@@ -320,7 +365,7 @@ function removeContact() {
 		console.log(err.message);
 	}
 
-    loadContacts();
+    //loadContacts();
 }
 
 /* Function to edit a contact */
@@ -381,7 +426,7 @@ function editContact() {
     let url = urlBase + "/EditContact." + extension;
     let payload = JSON.stringify(data);
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", urk, true);
+    xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try
