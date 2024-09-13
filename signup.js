@@ -16,7 +16,7 @@ function signup(event){
         return; 
     }
 
-    data = {
+   var signupdata = {
         firstName: firstName,
         lastName: lastName,
         login: username,
@@ -28,7 +28,7 @@ function signup(event){
 
     //Send stuff to php
     let url = urlBase + "/CreateAccount." + extension;
-    let payload = JSON.stringify(data);
+    let payload = JSON.stringify(signupdata);
     let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
