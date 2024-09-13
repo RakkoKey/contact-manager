@@ -50,7 +50,10 @@ function performLogout() {
 function performSignup(event) {
     console.log('Creating new account...');
     // Add sign-in logic here
-    event.preventDefault();
+    window.location.href = "signup.html";
+    
+    
+    /*
     const data = new FormData(event.target);
     let username = data.get("username");
     let password = data.get("password");
@@ -62,6 +65,7 @@ function performSignup(event) {
     else {
         alert('Please enter valid user sign-in credentials.')
     }
+    */
 }
 
 function verifySignUp(username, password){
@@ -404,8 +408,8 @@ function editContact() {
 
 /* Attaching event listeners to buttons */
 loginButton.addEventListener('submit', performLogin);
-/*
 signupButton.addEventListener('click', performSignup);
+/*
 searchButton.addEventListener('click', searchContact);
 addContactButton.addEventListener('click', addContact);
 removeContactButton.addEventListener('click', removeContact);
