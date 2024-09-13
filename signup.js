@@ -11,7 +11,11 @@ function signup(event){
     let password = data.get("password");
 
 
-    if()
+    if(!firstName || !lastName || !username || !password){
+        console.log("Invalid Fields");
+        return; 
+    }
+    
     data = {
         firstName: firstName,
         lastName: lastName,
