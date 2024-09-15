@@ -239,6 +239,7 @@ function displayContacts(contacts) { //the contacts to display
         //newContactRow.append(name, address, email, phoneNumber, editButton, deleteButton);
         newContactRow.append(name, address, email, phoneNumber);
         contactsTable.appendChild(newContactRow);
+        
 
     }
 }
@@ -344,7 +345,7 @@ function clearForm() {
 }
 
 /* Function to add a contact */
-function addContact(contact) {
+function addContact(event) {
     console.log('Adding contact...');
     // Add logic to handle adding a contact
     //event.preventDefault();
@@ -356,18 +357,24 @@ function addContact(contact) {
     let contactPhone = data.get("phone");
     */
 
-    let contactName = contact.name;
+    /*let contactName = contact.name;
     let contactAddress = contact.address;
     let contactPhone = contact.phoneNumber;
     let contactEmail = contact.email;
 
-    
-    
+    */
+    event.preventDefault();
+
+    let contactName = document.getElementById('contactName').value;
+    let contactAddress = document.getElementById('contactAddress').value;
+    let contactEmail = document.getElementById('contactEmail').value;
+    let contactPhone = document.getElementById('contactPhone').value;
     
 
 
     if(!contactName || !contactAddress || !contactPhone || !contactEmail) {
         alert('Please enter all contact details.');
+        
         return;
     }
 
@@ -414,7 +421,7 @@ function removeContact(contact) {
     //let contactFirstName = document.getElementById('contactFirstName').value;
     //let contactLastName = document.getElementById('contactLastName').value;
 
-    if (confirm("Are you sure you want to delete ${contact.Name}? ")) {
+    if (confirm("Are you sure you want to delete " + contact.name + " ?" )) {
         
         console.log('Removing contact...');
 
@@ -567,18 +574,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/*Figure out logic behind redirecting user if they press return to login button */
-
-/* Attaching event listeners to buttons */
-//loginButton.addEventListener('submit', performLogin);
-//signupButton.addEventListener('click', performSignup);
-//searchButton.addEventListener('click', searchContacts);
-//addButton.addEventListener('click', addContact);
-//removeButton.addEventListener('click', removeContact);
-//editButton.addEventListener('click', editContact);
-/*
-searchButton.addEventListener('click', searchContact);
-addContactButton.addEventListener('click', addContact);
-removeContactButton.addEventListener('click', removeContact);
-editContactButton.addEventListener('click', editContact);
-*/
