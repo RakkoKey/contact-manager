@@ -147,6 +147,8 @@ function loadContacts() {
                     displayContacts(response.contacts);
                 } else {
                     console.log('No contacts found.');
+                    contacts = [];
+                    displayContacts([]);
                 }
             }
         };
@@ -168,7 +170,7 @@ function displayContacts(contacts) { //the contacts to display
     if (!contacts || contacts.length === 0){
         let emptyMessage = document.createElement('tr');
         let emptyData = document.createElement('td');
-        emptyData.colSpan = 5;
+        emptyData.colSpan = 4;
         emptyData.textContent = "No contacts to be displayed.";
         emptyMessage.appendChild(emptyData);
         contactsTable.appendChild(emptyMessage);
@@ -189,13 +191,13 @@ function displayContacts(contacts) { //the contacts to display
         let email = document.createElement("td");
         let phoneNumber = document.createElement("td");
 
-        let editButton = document.createElement("button");
-        let deleteButton = document.createElement("button");
-        let addButton = document.createElement("button");
+        let editButton = document.getElementById("editButton");
+        let deleteButton = document.createElement("removeButton");
+        let addButton = document.createElement("addButton");
 
-        editButton.textContent = 'Edit Contact';
-        deleteButton.textContent = 'Delete Contact';
-        addButton.textContent = 'Add Contact';
+        //editButton.textContent = 'Edit Contact';
+        //deleteButton.textContent = 'Delete Contact';
+        //addButton.textContent = 'Add Contact';
 
         editButton.addEventListener('click', function edit() {
             //add logic for editing contact
@@ -357,15 +359,15 @@ function addContact(contact) {
     let contactPhone = data.get("phone");
     */
 
-    let contactName = contact.name;
+    /*let contactName = contact.name;
     let contactAddress = contact.address;
     let contactPhone = contact.phoneNumber;
     let contactEmail = contact.email;
-
-    
-    
-    
-
+    */
+    let contactName = prompt("Enter a new name:");
+    let contactAddress = prompt("Enter a new address:");
+    let contactEmail = prompt("Enter a new email:");
+    let contactPhone = prompt("Enter a new phone number:");
 
     if(!contactName || !contactAddress || !contactPhone || !contactEmail) {
         alert('Please enter all contact details.');
@@ -408,7 +410,7 @@ function addContact(contact) {
 }
 
 /* Function to remove a contact */
-function removeContact(contact) {
+function removeContact(contacts) {
     
     // Add logic to handle removing a contact
     //let contactId = documentById('contactId').value;
@@ -416,12 +418,28 @@ function removeContact(contact) {
     //let contactFirstName = document.getElementById('contactFirstName').value;
     //let contactLastName = document.getElementById('contactLastName').value;
 
-    if (confirm("Are you sure you want to delete " + contact.name + " ?" )) {
+    let contactToDel = prompt("Enter name of contact to be deleted:");
+    if (!contactToDel) {
+        alert('Please enter a valid contact name.');
+        return;
+    }
+    
+    
+    
+    if (confirm("Are you sure you want to delete " + contactToDel+ " ?" )) {
         
-        console.log('Removing contact...');
+        let contact = contacts.find(c => (c.firstName + " " + c.lastName).toLowerCase() === contactName.toLowerCase());
+
+        if(!contact) {
+            alert("Contact not found.");
+            return;
+        }
+        
+        console.log("Removing contact: ", contact);
+        
 
         let contactData = {
-            name: contact.Name,
+            name: contact.name,
             address: contact.address,
             email: contact.email,
             phone: contact.phoneNumber
@@ -473,7 +491,12 @@ function editContact(contact) {
     //let updatedAddress = document.getElementById('updatedAddress').value;
     //let updatedEmail = document.getElementById('updatedEmail').value;
     //let updatedPhone = document.getElementById('updatedPhone').value;
+    let contactToEdit = prompt("Enter name of contact to be edited:");
 
+    if (!contactToEdit) {
+        alert('Please enter a valid contact name.');
+        return;
+    }
 
     let updatedName = prompt("Enter a new name: ", contact.firstName + " " + contact.lastName);
     let updatedAddress = prompt("Enter a new address: ", contact.address);
@@ -553,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (searchButton) {
-        searchButton.addEventListener('click', searchContact);
+        searchButton.addEventListener('submit', searchContact);
     }
     
     if (addContactButton) {
