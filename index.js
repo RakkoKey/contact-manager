@@ -406,7 +406,7 @@ function addContact(contact) {
 }
 
 /* Function to remove a contact */
-function removeContact(event) {
+function removeContact(contact) {
     
     // Add logic to handle removing a contact
     //let contactId = documentById('contactId').value;
@@ -419,10 +419,10 @@ function removeContact(event) {
         console.log('Removing contact...');
 
         let contactData = {
-            name: contacts.Name,
-            address: contacts.address,
-            email: contacts.email,
-            phone: contacts.phoneNumber
+            name: contact.Name,
+            address: contact.address,
+            email: contact.email,
+            phone: contact.phoneNumber
         };
 
 
@@ -457,7 +457,7 @@ function removeContact(event) {
 }
 
 /* Function to edit a contact */
-function editContact() {
+function editContact(contact) {
     // Add logic to handle editing a contact
     
 
