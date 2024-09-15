@@ -528,7 +528,7 @@ function editContact() {
 loginButton.addEventListener('submit', performLogin);
 signupButton.addEventListener('click', performSignup);
 searchButton.addEventListener('click', searchContacts);
-addContactButton.addEventListener('click', addContact);
+//addContactButton.addEventListener('click', addContact);
 //removeContactButton.addEventListener('click', removeContact);
 //editContactButton.addEventListener('click', editContact);
 /*
