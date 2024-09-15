@@ -345,7 +345,7 @@ function clearForm() {
 }
 
 /* Function to add a contact */
-function addContact(event) {
+function addContact(contact) {
     console.log('Adding contact...');
     // Add logic to handle adding a contact
     //event.preventDefault();
@@ -357,18 +357,13 @@ function addContact(event) {
     let contactPhone = data.get("phone");
     */
 
-    /*let contactName = contact.name;
+    let contactName = contact.name;
     let contactAddress = contact.address;
     let contactPhone = contact.phoneNumber;
     let contactEmail = contact.email;
 
-    */
-    event.preventDefault();
-
-    let contactName = document.getElementById('contactName').value;
-    let contactAddress = document.getElementById('contactAddress').value;
-    let contactEmail = document.getElementById('contactEmail').value;
-    let contactPhone = document.getElementById('contactPhone').value;
+    
+    
     
 
 
