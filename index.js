@@ -8,9 +8,9 @@ let lastName = "";
 const loginButton = document.getElementById('loginForm');
 const signupButton = document.getElementById('signupButton');
 const searchButton = document.getElementById('searchButton');
-const addContactButton = document.getElementById('addContactButton');
-const removeContactButton = document.getElementById('removeContactButton');
-const editContactButton = document.getElementById('editContactButton');
+const addContactButton = document.getElementById('addButton');
+const removeContactButton = document.getElementById('removeButton');
+const editContactButton = document.getElementById('editButton');
 
 
 
@@ -130,7 +130,7 @@ function loadContacts() {
     }
     return displayContacts(storedContacts);
     */
-    let url = urlBase + "/GetContacts." + extension; // Adjust this endpoint to match API
+    let url = urlBase + "/GetContact." + extension; // Adjust this endpoint to match API
 
     let data = { userId: userID };
     let payload = JSON.stringify(data);
@@ -236,7 +236,8 @@ function displayContacts(contacts) { //the contacts to display
         email.innerHTML = contact.email;
         phoneNumber.innerHTML = contact.phoneNumber;
 
-        newContactRow.append(name, address, email, phoneNumber, editButton, deleteButton);
+        //newContactRow.append(name, address, email, phoneNumber, editButton, deleteButton);
+        newContactRow.append(name, address, email, phoneNumber);
         contactsTable.appendChild(newContactRow);
 
     }
@@ -246,7 +247,6 @@ function displayContacts(contacts) { //the contacts to display
 function searchContact(event) {
     event.preventDefault();
     
-     
     let searchQuery = document.getElementById('searchForm').value;
 
     if(!searchQuery) {
@@ -255,7 +255,7 @@ function searchContact(event) {
     }
     console.log('Searching for:', searchQuery);
     // Add search logic
-    let url = urlBase + "/SearchContacts." + extension;
+    let url = urlBase + "/SearchContact." + extension;
     let data = {query: searchQuery};
     let payload = JSON.stringify(data);
 
@@ -344,16 +344,27 @@ function clearForm() {
 }
 
 /* Function to add a contact */
-function addContact(event) {
+function addContact(contact) {
     console.log('Adding contact...');
     // Add logic to handle adding a contact
-    event.preventDefault();
-    const data = new FormData(event.target);
-
+    //event.preventDefault();
+    //const data = new FormData(event.target);
+    /*
     let contactName = data.get("name");
     let contactAddress = data.get("address");
     let contactEmail = data.get("email");
     let contactPhone = data.get("phone");
+    */
+
+    let contactName = contact.name;
+    let contactAddress = contact.address;
+    let contactPhone = contact.phoneNumber;
+    let contactEmail = contact.email;
+
+    
+    
+    
+
 
     if(!contactName || !contactAddress || !contactPhone || !contactEmail) {
         alert('Please enter all contact details.');
@@ -395,23 +406,23 @@ function addContact(event) {
 }
 
 /* Function to remove a contact */
-function removeContact() {
+function removeContact(event) {
     
     // Add logic to handle removing a contact
     //let contactId = documentById('contactId').value;
-    let contactPhone = documentById('contactPhone').value;
-    let contactFirstName = documentById('contactFirstName').value;
-    let contactLastName = documentById('contactLastName').value;
+    //let contactPhone = document.getElementById('contactPhone').value;
+    //let contactFirstName = document.getElementById('contactFirstName').value;
+    //let contactLastName = document.getElementById('contactLastName').value;
 
-    if (confirm("Are you sure you want to delete ${contact.firstName} ${contact.lastName}? ")) {
+    if (confirm("Are you sure you want to delete ${contact.Name}? ")) {
         
         console.log('Removing contact...');
 
         let contactData = {
-        firstName: contactFirstName,
-        lastName: contactLastName,
-        phone: contactPhone
-        
+            name: contacts.Name,
+            address: contacts.address,
+            email: contacts.email,
+            phone: contacts.phoneNumber
         };
 
 
@@ -462,10 +473,10 @@ function editContact() {
     //let updatedPhone = document.getElementById('updatedPhone').value;
 
 
-    let updatedName = prompt("Enter a new name:", contact.firstName + " " + contact.lastName);
-    let updatedAddress = prompt("Enter a new addres", contact.address);
-    let updatedEmail = prompt("Enter a new email", contact.email);
-    let updatedPhone = prompt("Enter a new phone number", contact.phoneNumber);
+    let updatedName = prompt("Enter a new name: ", contact.firstName + " " + contact.lastName);
+    let updatedAddress = prompt("Enter a new address: ", contact.address);
+    let updatedEmail = prompt("Enter a new email: ", contact.email);
+    let updatedPhone = prompt("Enter a new phone number: ", contact.phoneNumber);
     
 
     let updatedContactData = {
@@ -525,12 +536,13 @@ function editContact() {
 /*Figure out logic behind redirecting user if they press return to login button */
 
 /* Attaching event listeners to buttons */
-//loginButton.addEventListener('submit', performLogin);
-//signupButton.addEventListener('click', performSignup);
-//searchButton.addEventListener('click', searchContacts);
-//addContactButton.addEventListener('click', addContact);
-//removeContactButton.addEventListener('click', removeContact);
-//editContactButton.addEventListener('click', editContact);
+loginButton.addEventListener('submit', performLogin);
+signupButton.addEventListener('click', performSignup);
+searchButton.addEventListener('click', searchContacts);
+//addButton.addEventListener('click', addContact);
+//removeButton.addEventListener('click', removeContact);
+//editButton.addEventListener('click', editContact);
+
 /*
 searchButton.addEventListener('click', searchContact);
 addContactButton.addEventListener('click', addContact);
