@@ -497,7 +497,7 @@ function editContact() {
 
     //Sending payload to PHP 
     let url = urlBase + "/EditContact." + extension;
-    let payload = JSON.stringify(updatedContactDatadata);
+    let payload = JSON.stringify(updatedContactData);
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
