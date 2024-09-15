@@ -525,9 +525,9 @@ function editContact() {
 /*Figure out logic behind redirecting user if they press return to login button */
 
 /* Attaching event listeners to buttons */
-loginButton.addEventListener('submit', performLogin);
-signupButton.addEventListener('click', performSignup);
-searchButton.addEventListener('click', searchContacts);
+//loginButton.addEventListener('submit', performLogin);
+//signupButton.addEventListener('click', performSignup);
+//searchButton.addEventListener('click', searchContacts);
 //addContactButton.addEventListener('click', addContact);
 //removeContactButton.addEventListener('click', removeContact);
 //editContactButton.addEventListener('click', editContact);
