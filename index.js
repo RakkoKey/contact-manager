@@ -21,8 +21,6 @@ function performLogin(event) {
     event.preventDefault(); // Prevent form from submitting the default way
     const data = new FormData(event.target);
 
-
-
     let username = data.get("username")
     let password = data.get("password");
 
@@ -44,6 +42,7 @@ function performLogout() {
     firstName = "";
     lastName = "";
     // Add more logic to clear user session and redirect
+    window.location.href = "index.html";
 }
 
 /* Function to handle sign-up (account creation) */
@@ -125,11 +124,36 @@ function isLoggedIn() {
 function loadContacts() {
     console.log('Loading contacts...');
     // Get contacts from API and display them
-    const storedContacts = localStorage.getItem("contacts");
+    /*const storedContacts = localStorage.getItem("contacts");
     if(storedContacts) {
         contacts = JSON.parse(storedContacts);
     }
     return displayContacts(storedContacts);
+    */
+    let url = urlBase + "/GetContacts." + extension; // Adjust this endpoint to match API
+
+    let data = { userId: userID };
+    let payload = JSON.stringify(data);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let response = JSON.parse(xhr.responseText);
+                if (response.contacts) {
+                    displayContacts(response.contacts);
+                } else {
+                    console.log('No contacts found.');
+                }
+            }
+        };
+        xhr.send(payload);
+    } catch (err) {
+        console.log(err.message);
+    }
 }
 
 /* Will be a function to display the contact table */
@@ -138,25 +162,62 @@ function displayContacts(contacts) { //the contacts to display
     //we want to get the element that holds all the contacts
     const contactsTable = document.getElementById('contactTable');
 
+    // clear placeholders
+    contactsTable.innerHTML = '';
+    
+    if (!contacts || contacts.length === 0){
+        let emptyMessage = document.createElement('tr');
+        let emptyData = document.createElement('td');
+        emptyData.colSpan = 5;
+        emptyData.textContent = "No contacts to be displayed.";
+        emptyMessage.appendChild(emptyData);
+        contactsTable.appendChild(emptyMessage);
+        return;
+    }
+    
     //for loop that loops through array
     for(let i = 0; i < contacts.length; i++){
-        var newContactRow = document.createElement("tr");
+        //var newContactRow = document.createElement("tr");
+        let contact = contacts[i];
+
+        //new row for each contact
+        let newContactRow = document.createElement("tr");
+        
         //create the table data
         let name = document.createElement("td");
         let address = document.createElement("td");
         let email = document.createElement("td");
         let phoneNumber = document.createElement("td");
 
+        let editButton = document.createElement("button");
         let deleteButton = document.createElement("button");
-        deleteButton.addEventListener('click',function del(){
-            //remove contact from database
-            removeContact(contacts[i]);
+        let addButton = document.createElement("button");
 
-            //delete contact from DOM
+        editButton.textContent = 'Edit Contact';
+        deleteButton.textContent = 'Delete Contact';
+        addButton.textContent = 'Add Contact';
+
+        editButton.addEventListener('click', function edit() {
+            //add logic for editing contact
             
-        })
+            editContact(contact);
+        });
+        
+        deleteButton.addEventListener('click',function del() {
+            //remove contact from database
+            //removeContact(contacts[i]);
+            //TODO: finish this
+            //delete contact from DOM
+            removeContact(contact);
+        });
 
+        addButton.addEventListener('click', function add() {
 
+            addContact(contact);
+
+        });
+
+        /*
         //combining the first and last name into one string
         let nameString = contacts[i].firstName + " " + contacts[i].lastName;
         //populate the table data
@@ -168,6 +229,16 @@ function displayContacts(contacts) { //the contacts to display
         //put the new data onto the website
         newContactRow.append(name, address, email, phoneNumber, deleteButton);
         contactsTable.appendChild(newContactRow);
+        */
+        let nameString = contact.firstName + " " + contact.lastName;
+        name.innerHTML = nameString;
+        address.innerHTML = contact.address;
+        email.innerHTML = contact.email;
+        phoneNumber.innerHTML = contact.phoneNumber;
+
+        newContactRow.append(name, address, email, phoneNumber, editButton, deleteButton);
+        contactsTable.appendChild(newContactRow);
+
     }
 }
 
@@ -284,7 +355,7 @@ function addContact(event) {
     let contactEmail = data.get("email");
     let contactPhone = data.get("phone");
 
-    if(!contactName || !contactPhone || !contactEmail) {
+    if(!contactName || !contactAddress || !contactPhone || !contactEmail) {
         alert('Please enter all contact details.');
         return;
     }
@@ -320,7 +391,7 @@ function addContact(event) {
 	{
 		console.log(err.message);
 	}
-    //loadContacts();
+    
 }
 
 /* Function to remove a contact */
@@ -332,43 +403,46 @@ function removeContact() {
     let contactFirstName = documentById('contactFirstName').value;
     let contactLastName = documentById('contactLastName').value;
 
+    if (confirm("Are you sure you want to delete ${contact.firstName} ${contact.lastName}? ")) {
+        
+        console.log('Removing contact...');
 
-    console.log('Removing contact...');
-
-   
-    
-    let contactData = {
+        let contactData = {
         firstName: contactFirstName,
         lastName: contactLastName,
         phone: contactPhone
-    };
+        
+        };
 
 
-    //Sending payload to PHP 
-    let url = urlBase + "/DeleteContact." + extension;
-    let payload = JSON.stringify(contactData);
-    let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        //Sending payload to PHP 
+        let url = urlBase + "/DeleteContact." + extension;
+        let payload = JSON.stringify(contactData);
+        let xhr = new XMLHttpRequest();
+	    xhr.open("POST", url, true);
+	    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				console.log("Contact Deleted");
-                loadContacts();
-			}
-		};
-		xhr.send(payload);
-	}
-	catch(err)
-	{
-		console.log(err.message);
-	}
+        try
+	    {
+		    xhr.onreadystatechange = function() 
+		    {
+			    if (this.readyState == 4 && this.status == 200) 
+			    {
+				    console.log("Contact Deleted");
+                    loadContacts();
+			    }
+		    };
+		    xhr.send(payload);
+	    }
+	    catch(err)
+	    {
+		    console.log(err.message);
+	    }
 
-    //loadContacts();
+    
+    }   
+    
+
 }
 
 /* Function to edit a contact */
@@ -379,55 +453,51 @@ function editContact() {
     //Update all previous contact info:
     //TODO: Determine if we want to implement unique ID for a contact,
     //if so then we should update that also.
-    let contactId = document.getElementById('contactId').value; 
+    //let contactId = document.getElementById('contactId').value; 
     
-    let updatedName = document.getElementById('updatedName').value;
-    let updatedAddress = document.getElementById('updatedAddress').value;
-    let updatedEmail = document.getElementById('updatedEmail').value;
-    let updatedPhone = document.getElementById('updatedPhone').value;
 
-    console.log("Editing contact info with ID", contactId);
+    //let updatedName = document.getElementById('updatedName').value;
+    //let updatedAddress = document.getElementById('updatedAddress').value;
+    //let updatedEmail = document.getElementById('updatedEmail').value;
+    //let updatedPhone = document.getElementById('updatedPhone').value;
 
-    //Make sure user input is valid:
-    if(!contactId){
-        alert('Contact ID is required to edit.');
-        return;
+
+    let updatedName = prompt("Enter a new name:", contact.firstName + " " + contact.lastName);
+    let updatedAddress = prompt("Enter a new addres", contact.address);
+    let updatedEmail = prompt("Enter a new email", contact.email);
+    let updatedPhone = prompt("Enter a new phone number", contact.phoneNumber);
+    
+
+    let updatedContactData = {
+        name: updatedName || (contact.firstName + " " + contact.lastName),
+        address: updatedAddress || contact.address,
+        email: updatedEmail || contact.email,
+        phone: updatedPhone || contact.phoneNumber
     }
-
-    //Store all new data:
-    let data = {
-        id: contactId
-    };
-
+    
     //Process if data fields are empty, 
     //if so then enable user to add to the data object.
-    if(updatedName) {
-        data.name = updatedName;
+    /*if(updatedName) {
+        contactData.name = updatedName;
     }
 
     if(updatedAddress) {
-        data.address = updatedAddress;
+        contactData.address = updatedAddress;
     }
 
     if(updatedEmail) {
-        data.email =updatedEmail;
+        contactData.email = updatedEmail;
     }
     if(updatedPhone) {
-        data.phone = updatedPhone;
+        contactData.phone = updatedPhone;
     }
-
-    //Check if a field was updated
-    // Because only key would be'id' if this is true (no update made)
-    if(Object.keys(data).length === 1) {
-        alert('User did not make any changes.');
-        return;
-    }
+    */
 
 
 
     //Sending payload to PHP 
     let url = urlBase + "/EditContact." + extension;
-    let payload = JSON.stringify(data);
+    let payload = JSON.stringify(updatedContactDatadata);
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -442,11 +512,11 @@ function editContact() {
                 loadContacts(); 
             }    
         };
-        xhr.send(JSON.stringify(data)); 
+        xhr.send(payload); 
     }
     catch(err)
     {
-        console.log('Error trying to contact:', err.message);
+        console.log('Error trying to edit contact:', err.message);
     }
     
     
@@ -457,6 +527,10 @@ function editContact() {
 /* Attaching event listeners to buttons */
 loginButton.addEventListener('submit', performLogin);
 signupButton.addEventListener('click', performSignup);
+searchButton.addEventListener('click', searchContacts);
+addContactButton.addEventListener('click', addContact);
+//removeContactButton.addEventListener('click', removeContact);
+//editContactButton.addEventListener('click', editContact);
 /*
 searchButton.addEventListener('click', searchContact);
 addContactButton.addEventListener('click', addContact);
