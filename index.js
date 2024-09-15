@@ -533,6 +533,40 @@ function editContact() {
     
 }
 
+//adding way to attach event listeners after DOM has fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    const loginButton = document.getElementById('loginForm');
+    const signupButton = document.getElementById('signupButton');
+    const searchButton = document.getElementById('searchButton');
+    const addContactButton = document.getElementById('addButton');
+    const removeContactButton = document.getElementById('removeButton');
+    const editContactButton = document.getElementById('editButton');
+
+    if (loginButton) {
+        loginButton.addEventListener('submit', performLogin);
+    }
+    
+    if (signupButton) {
+        signupButton.addEventListener('click', performSignup);
+    }
+    
+    if (searchButton) {
+        searchButton.addEventListener('click', searchContact);
+    }
+    
+    if (addContactButton) {
+        addContactButton.addEventListener('click', addContact);
+    }
+    
+    if (removeContactButton) {
+        removeContactButton.addEventListener('click', removeContact);
+    }
+    
+    if (editContactButton) {
+        editContactButton.addEventListener('click', editContact);
+    }
+});
+
 /*Figure out logic behind redirecting user if they press return to login button */
 
 /* Attaching event listeners to buttons */
