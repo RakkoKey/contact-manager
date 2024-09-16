@@ -158,16 +158,15 @@ function loadContacts() {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let response = JSON.parse(xhr.responseText);
-                displayContacts(response.results);
-                    //don't need this window.location.href = "contact.html";
-
                 
-                // } else {
-                //     console.log(response);
-                //     console.log('No contacts found.');
-                //     contacts = [];
-                //     displayContacts([]);
-                // }
+                if(Array.isArray(response.result)){
+                    displayContacts(response.result);
+                }else {
+                    console.log(response);
+                    console.log('No contacts found.');
+                    contacts = [];
+                    displayContacts([]);
+                }
             }
         };
         xhr.send(payload);
@@ -197,7 +196,6 @@ function displayContacts(contacts) { //the contacts to display
     
     //for loop that loops through array
     for(let i = 0; i < contacts.length; i++){
-        //var newContactRow = document.createElement("tr");
         let contact = contacts[i];
 
         //new row for each contact
@@ -209,20 +207,20 @@ function displayContacts(contacts) { //the contacts to display
         let email = document.createElement("td");
         let phoneNumber = document.createElement("td");
 
-        let editButton = document.getElementById("editButton");
+        let editButton = document.createElement("editButton");
         let deleteButton = document.createElement("removeButton");
        // let addButton = document.createElement("addButton");
 
         //editButton.textContent = 'Edit Contact';
         //deleteButton.textContent = 'Delete Contact';
         //addButton.textContent = 'Add Contact';
-        /*
+        
         editButton.addEventListener('click', function edit() {
             //add logic for editing contact
             
             editContact(contact);
         });
-        */
+        
         deleteButton.addEventListener('click',function del() {
             //remove contact from database
             //removeContact(contacts[i]);
@@ -231,25 +229,8 @@ function displayContacts(contacts) { //the contacts to display
             removeContact(contact);
         });
 
-        //addButton.addEventListener('submit', function add() {
+    
 
-            //addContact();
-
-        //});
-
-        /*
-        //combining the first and last name into one string
-        let nameString = contacts[i].firstName + " " + contacts[i].lastName;
-        //populate the table data
-        name.innerHTML = nameString;
-        address.innerHTML = contacts[i].address;
-        email.innerHTML = contacts[i].email;
-        phoneNumber.innerHTML = contacts[i].phoneNumber;
-
-        //put the new data onto the website
-        newContactRow.append(name, address, email, phoneNumber, deleteButton);
-        contactsTable.appendChild(newContactRow);
-        */
         let nameString = contact.firstName + " " + contact.lastName;
         name.innerHTML = nameString;
         address.innerHTML = contact.address;
