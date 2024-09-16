@@ -209,9 +209,12 @@ function displayContacts(contacts) { //the contacts to display
         let address = document.createElement("td");
         let email = document.createElement("td");
         let phoneNumber = document.createElement("td");
+        let buttons = document.createElement("td");
 
         let editButton = document.createElement("editButton");
         let deleteButton = document.createElement("removeButton");
+
+        buttons.append(editButton, deleteButton);
        // let addButton = document.createElement("addButton");
 
         //editButton.textContent = 'Edit Contact';
