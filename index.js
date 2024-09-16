@@ -145,6 +145,7 @@ function loadContacts() {
                 let response = JSON.parse(xhr.responseText);
                 if (response.contacts) {
                     displayContacts(response.contacts);
+                    window.location.href = "contact.html";
                 } else {
                     console.log('No contacts found.');
                     contacts = [];
