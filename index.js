@@ -211,10 +211,10 @@ function displayContacts(contacts) { //the contacts to display
         let phoneNumber = document.createElement("td");
         let buttons = document.createElement("td");
 
-        let editButton = document.createElement("editButton");
+        let editButton = document.createElement("button");
         editButton.innerHTML = "Edit";
 
-        let deleteButton = document.createElement("removeButton");
+        let deleteButton = document.createElement("button");
         deleteButton.innerHTML = "Delete";
         buttons.append(editButton, deleteButton);
        // let addButton = document.createElement("addButton");
