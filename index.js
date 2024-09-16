@@ -107,12 +107,12 @@ function saveCookie()
 	let minutes = 20;
 	let date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userID + ";expires=" + date.toGMTString();
     console.log(document.cookie);
 }
 function readCookie()
 {
-	userId = -1;
+	userID = -1;
 	let data = document.cookie;
 	let splits = data.split(",");
 	for(var i = 0; i < splits.length; i++) 
@@ -340,7 +340,7 @@ function verifyLogin(username, password){
                 //populate data
                 userID = userJSON.id;
                 firstName = userJSON.firstName;
-                lastName = userJSON.firstName;
+                lastName = userJSON.lastName;
                 saveCookie();
                 
 		        window.location.href = "contact.html";
@@ -379,7 +379,7 @@ function addContact(event) {
     let contactEmail = data.get("email");
     let contactPhone = data.get("phone");
     let contactAddress = data.get("address");
-    let contactUserID = data.get("userID");
+    
     
     if(!contactFirstName || !contactLastName || !contactUserID || !contactAddress || !contactPhone || !contactEmail) {
         alert('Please enter all contact details.');
@@ -393,7 +393,7 @@ function addContact(event) {
         address: contactAddress,
         email: contactEmail,
         phone: contactPhone,
-        id: contactUserID,
+        id: userID,
     };
 
     //Sending payload to PHP 
@@ -595,6 +595,8 @@ document.addEventListener('DOMContentLoaded', function(){
             });
         });
     }
+    readCookie();
+    console.log(userID);
 })
 
 
