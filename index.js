@@ -1,9 +1,9 @@
 const urlBase = 'http://cop4331bena.xyz/API';
 const extension = 'php';
 
-let userID = 0;
-let firstName = "";
-let lastName = "";
+var userID = 0;
+var firstName = "";
+var lastName = "";
 
 
 const loginButton = document.getElementById('loginForm');
