@@ -245,10 +245,14 @@ function displayContacts(contacts) { //the contacts to display
 
             let submitButton = document.createElement("button");
             submitButton.setAttribute("type", "submit");
+            submitButton.innerHTML("Submit");
             submitButton.addEventListener('submit', function(){
                 console.log("test");
+                editButton.disabled = false;
             })
-            
+            editButton.disabled = true;
+
+
             buttons.append(submitButton)
 
 
