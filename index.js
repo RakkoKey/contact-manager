@@ -248,6 +248,11 @@ function displayContacts(contacts) { //the contacts to display
             submitButton.addEventListener('click', function(){
                 console.log("test");
                 editButton.disabled = false;
+                //remove everything
+                newName.remove();
+                newAddress.remove()
+                newEmail.remove();
+                newPhone.remove();
                 submitButton.remove();
             })
             editButton.disabled = true;
