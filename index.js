@@ -158,7 +158,7 @@ function loadContacts() {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let response = JSON.parse(xhr.responseText);
-                if (Array.isArray(response.results)) {
+                if (response.results) {
                     displayContacts(response.results);
                     //don't need this window.location.href = "contact.html";
                 } else {
