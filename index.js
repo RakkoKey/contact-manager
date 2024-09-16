@@ -147,7 +147,7 @@ function loadContacts() {
    
     let url = urlBase + "/GetContact." + extension; // Adjust this endpoint to match API
 
-    let data = { userId: userID };
+    let data = { userID: userID };
     let payload = JSON.stringify(data);
 
     let xhr = new XMLHttpRequest();
@@ -158,15 +158,16 @@ function loadContacts() {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let response = JSON.parse(xhr.responseText);
-                if (response.results) {
-                    displayContacts(response.results);
+                displayContacts(response.results);
                     //don't need this window.location.href = "contact.html";
-                } else {
-                    console.log(response);
-                    console.log('No contacts found.');
-                    contacts = [];
-                    displayContacts([]);
-                }
+
+                
+                // } else {
+                //     console.log(response);
+                //     console.log('No contacts found.');
+                //     contacts = [];
+                //     displayContacts([]);
+                // }
             }
         };
         xhr.send(payload);
