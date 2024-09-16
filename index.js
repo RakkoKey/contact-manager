@@ -48,6 +48,9 @@ function performLogout() {
     window.location.href = "index.html";
 }
 
+function performSignup(){
+    window.location.href = "signup.html";
+}
 
 function verifySignUp(username, password){
     let data = {
@@ -365,15 +368,15 @@ function addContact(event) {
         
         return;
     }
-
+    console.log(contactFirstName + contactLastName + contactEmail + contactPhone + contactAddress);
     let contactData = {
         firstName: contactFirstName,
         lastName: contactLastName,
-        address: contactAddress,
         email: contactEmail,
-        phone: contactPhone,
-        id: userID,
-    };
+        phoneNumber: contactPhone,
+        address: contactAddress,
+        userID: userID,
+    }
 
     //Sending payload to PHP 
     let url = urlBase + "/AddContact." + extension;
@@ -443,7 +446,7 @@ function removeContact(contacts) {
         address: contact.address,
         email: contact.email,
         phone: contact.phoneNumber,
-    };
+    }
 
 
     //Sending payload to PHP 
@@ -559,11 +562,11 @@ document.addEventListener('DOMContentLoaded', function(){
     if(loginButton){
         loginButton.addEventListener('submit', performLogin)
     }
-    if(signupButton){
-        signupButton.addEventListener('click', performSignup);
-    }
     if(searchButton){
         searchButton.addEventListener('submit', searchContact);
+    }
+    if(signupButton){
+        signupButton.addEventListener('click', performSignup);
     }
     if(addContactButton){
         addContactButton.addEventListener('click', function(){
