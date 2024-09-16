@@ -212,8 +212,10 @@ function displayContacts(contacts) { //the contacts to display
         let buttons = document.createElement("td");
 
         let editButton = document.createElement("editButton");
-        let deleteButton = document.createElement("removeButton");
+        editButton.innerHTML = "Edit";
 
+        let deleteButton = document.createElement("removeButton");
+        deleteButton.innerHTML = "Delete";
         buttons.append(editButton, deleteButton);
        // let addButton = document.createElement("addButton");
 
