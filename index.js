@@ -244,7 +244,7 @@ function displayContacts(contacts) { //the contacts to display
         phoneNumber.innerHTML = contact.phoneNumber;
 
         //newContactRow.append(name, address, email, phoneNumber, editButton, deleteButton);
-        newContactRow.append(name, address, email, phoneNumber);
+        newContactRow.append(name, address, email, phoneNumber, buttons);
         contactsTable.appendChild(newContactRow);
         
 
