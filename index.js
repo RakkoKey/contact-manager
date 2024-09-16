@@ -8,7 +8,7 @@ let lastName = "";
 const loginButton = document.getElementById('loginForm');
 const signupButton = document.getElementById('signupButton');
 const searchButton = document.getElementById('searchButton');
-const addContactButton = document.getElementById('addButton');
+//const addContactButton = document.getElementById('addButton');
 const removeContactButton = document.getElementById('removeButton');
 const editContactButton = document.getElementById('editButton');
 
@@ -194,7 +194,7 @@ function displayContacts(contacts) { //the contacts to display
 
         let editButton = document.getElementById("editButton");
         let deleteButton = document.createElement("removeButton");
-        let addButton = document.createElement("addButton");
+       // let addButton = document.createElement("addButton");
 
         //editButton.textContent = 'Edit Contact';
         //deleteButton.textContent = 'Delete Contact';
@@ -214,11 +214,11 @@ function displayContacts(contacts) { //the contacts to display
             removeContact(contact);
         });
 
-        addButton.addEventListener('submit', function add() {
+        //addButton.addEventListener('submit', function add() {
 
-            addContact();
+            //addContact();
 
-        });
+        //});
 
         /*
         //combining the first and last name into one string
@@ -415,6 +415,10 @@ function addContact(event) {
 	}
     
 }
+const addContactButton = document.getElementById('addButton');
+if (addContactButton){
+    addContactButton.addEventListener('submit', addContact);
+}
 
 /* Function to remove a contact */
 function removeContact(contacts) {
@@ -593,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (addContactButton) {
-        addContactButton.addEventListener('click', addContact);
+        addContactButton.addEventListener('submit', addContact);
     }
     
     if (removeContactButton) {
