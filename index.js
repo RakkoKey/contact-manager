@@ -225,7 +225,7 @@ function displayContacts(contacts) { //the contacts to display
         
         editButton.addEventListener('click', function edit() {
             //add logic for editing contact
-            
+            name = document.createElement("input");
             editContact(contact);
         });
         
@@ -472,12 +472,6 @@ function editContact(contact) {
     //let updatedAddress = document.getElementById('updatedAddress').value;
     //let updatedEmail = document.getElementById('updatedEmail').value;
     //let updatedPhone = document.getElementById('updatedPhone').value;
-    let contactToEdit = prompt("Enter name of contact to be edited:");
-
-    if (!contactToEdit) {
-        alert('Please enter a valid contact name.');
-        return;
-    }
 
     let updatedName = prompt("Enter a new name: ", contact.firstName + " " + contact.lastName);
     let updatedAddress = prompt("Enter a new address: ", contact.address);
