@@ -5,10 +5,11 @@ let userID = 0;
 let firstName = "";
 let lastName = "";
 
+
 const loginButton = document.getElementById('loginForm');
 const signupButton = document.getElementById('signupButton');
 const searchButton = document.getElementById('searchButton');
-//const addContactButton = document.getElementById('addButton');
+const addContactButton = document.getElementById('addButton');
 const removeContactButton = document.getElementById('removeButton');
 const editContactButton = document.getElementById('editButton');
 
@@ -16,7 +17,8 @@ const editContactButton = document.getElementById('editButton');
 
 
 
-/* Function to handle login */
+
+/* Function to handle login */ 
 function performLogin(event) {
     event.preventDefault(); // Prevent form from submitting the default way
     const data = new FormData(event.target);
@@ -45,27 +47,6 @@ function performLogout() {
     window.location.href = "index.html";
 }
 
-/* Function to handle sign-up (account creation) */
-function performSignup(event) {
-    console.log('Creating new account...');
-    // Add sign-in logic here
-    window.location.href = "signup.html";
-    
-    
-    /*
-    const data = new FormData(event.target);
-    let username = data.get("username");
-    let password = data.get("password");
-
-    if(validateForm(username, password)){
-        console.log('Signing up with:', username, password);
-        verifySignUp(username, password);
-    }
-    else {
-        alert('Please enter valid user sign-in credentials.')
-    }
-    */
-}
 
 function verifySignUp(username, password){
     let data = {
@@ -101,9 +82,13 @@ function verifySignUp(username, password){
                 userID = userJSON.id;
                 firstName = userJSON.firstName;
                 lastName = userJSON.firstName;
+
+                saveCookie();
+
 		        window.location.href = "contact.html";
 		
                 console.log("Login Verified!");
+                console.log(document.cookie);
 			}
 		};
 		xhr.send(payload);
@@ -115,9 +100,42 @@ function verifySignUp(username, password){
     
 }
 
-/* Function to verify if the user is logged in */
-function isLoggedIn() {
-    return userId !== 0;
+//save userID
+function saveCookie()
+{
+	let minutes = 20;
+	let date = new Date();
+	date.setTime(date.getTime()+(minutes*60*1000));	
+	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+    
+}
+function readCookie()
+{
+	userId = -1;
+	let data = document.cookie;
+	let splits = data.split(",");
+	for(var i = 0; i < splits.length; i++) 
+	{
+		let thisOne = splits[i].trim();
+		let tokens = thisOne.split("=");
+		if( tokens[0] == "firstName" )
+		{
+			firstName = tokens[1];
+		}
+		else if( tokens[0] == "lastName" )
+		{
+			lastName = tokens[1];
+		}
+		else if( tokens[0] == "userId" )
+		{
+			userId = parseInt( tokens[1].trim() );
+		}
+	}
+	
+	if( userId < 0 )
+	{
+		window.location.href = "index.html";
+	}
 }
 
 /* Wrapper function for displayContacts() to load contacts */
@@ -401,10 +419,7 @@ function addContact(event) {
 	}
     
 }
-const addContactButton = document.getElementById('addButton');
-if (addContactButton){
-    addContactButton.addEventListener('submit', addContact);
-}
+
 
 /* Function to remove a contact */
 function removeContact(contacts) {
@@ -558,37 +573,4 @@ function editContact(contact) {
     
 }
 
-//adding way to attach event listeners after DOM has fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    const loginButton = document.getElementById('loginForm');
-    const signupButton = document.getElementById('signupButton');
-    const searchButton = document.getElementById('searchButton');
-    const addContactButton = document.getElementById('addButton');
-    const removeContactButton = document.getElementById('removeButton');
-    const editContactButton = document.getElementById('editButton');
-
-    if (loginButton) {
-        loginButton.addEventListener('submit', performLogin);
-    }
-    
-    if (signupButton) {
-        signupButton.addEventListener('click', performSignup);
-    }
-    
-    if (searchButton) {
-        searchButton.addEventListener('submit', searchContact);
-    }
-    
-    if (addContactButton) {
-        addContactButton.addEventListener('submit', addContact);
-    }
-    
-    if (removeContactButton) {
-        removeContactButton.addEventListener('click', removeContact);
-    }
-    
-    if (editContactButton) {
-        editContactButton.addEventListener('click', editContact);
-    }
-});
 
