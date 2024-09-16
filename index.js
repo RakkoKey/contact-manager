@@ -360,20 +360,6 @@ function addContact(event) {
     let contactAddress = data.get("address");
     let contactUserID = data.get("userID");
     
-    /*
-    let contactFirstName = contact.firstName;
-    let contactLastName = contact.lastName;
-    let contactAddress = contact.address;
-    let contactPhone = contact.phoneNumber;
-    let contactEmail = contact.email;
-    */
-    
-    //can't use prompt or alert
-    /*let contactName = prompt("Enter a new name:");
-    let contactAddress = prompt("Enter a new address:");
-    let contactEmail = prompt("Enter a new email:");
-    let contactPhone = prompt("Enter a new phone number:");
-    */
     if(!contactFirstName || !contactLastName || !contactUserID || !contactAddress || !contactPhone || !contactEmail) {
         alert('Please enter all contact details.');
         
@@ -386,7 +372,7 @@ function addContact(event) {
         address: contactAddress,
         email: contactEmail,
         phone: contactPhone,
-        id: contactUserID
+        id: contactUserID,
     };
 
     //Sending payload to PHP 
@@ -459,7 +445,7 @@ function removeContact(contacts) {
         lastName: contact.lastName,
         address: contact.address,
         email: contact.email,
-        phone: contact.phoneNumber
+        phone: contact.phoneNumber,
     };
 
 
@@ -522,7 +508,7 @@ function editContact(contact) {
         name: updatedName || (contact.firstName + " " + contact.lastName),
         address: updatedAddress || contact.address,
         email: updatedEmail || contact.email,
-        phone: updatedPhone || contact.phoneNumber
+        phone: updatedPhone || contact.phoneNumber,
     }
     
     //Process if data fields are empty, 
