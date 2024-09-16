@@ -57,7 +57,7 @@ function verifySignUp(username, password){
 
     let url = urlBase + "/SignUpContMang." + extension;
 	console.log(data);
-    // above is not finished
+    
     //sending payload to php
     let payload = JSON.stringify(data);
 
@@ -572,5 +572,20 @@ function editContact(contact) {
     
     
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+    if(loginButton){
+        loginButton.addEventListener('submit', performLogin)
+    }
+    if(signupButton){
+        signupButton.addEventListener('click', performSignup);
+    }
+    if(searchButton){
+        searchButton.addEventListener('submit', searchContact);
+    }
+    if(addContactButton){
+        addContactButton.addEventListener('submit', addContact);
+    }
+})
 
 
