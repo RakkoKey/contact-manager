@@ -144,12 +144,7 @@ function readCookie()
 function loadContacts() {
     console.log('Loading contacts...');
     // Get contacts from API and display them
-    /*const storedContacts = localStorage.getItem("contacts");
-    if(storedContacts) {
-        contacts = JSON.parse(storedContacts);
-    }
-    return displayContacts(storedContacts);
-    */
+   
     let url = urlBase + "/GetContact." + extension; // Adjust this endpoint to match API
 
     let data = { userId: userID };
@@ -163,10 +158,11 @@ function loadContacts() {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let response = JSON.parse(xhr.responseText);
-                if (Array.isArray(response.contacts)) {
-                    displayContacts(response.contacts);
+                if (Array.isArray(response.results)) {
+                    displayContacts(response.results);
                     //don't need this window.location.href = "contact.html";
                 } else {
+                    console.log(response);
                     console.log('No contacts found.');
                     contacts = [];
                     displayContacts([]);
