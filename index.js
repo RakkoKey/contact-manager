@@ -159,8 +159,8 @@ function loadContacts() {
             if (this.readyState == 4 && this.status == 200) {
                 let response = JSON.parse(xhr.responseText);
                 
-                if(Array.isArray(response.result)){
-                    displayContacts(response.result);
+                if(response.results){
+                    displayContacts(response.results);
                 }else {
                     console.log(response);
                     console.log('No contacts found.');
