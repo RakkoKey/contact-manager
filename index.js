@@ -114,6 +114,7 @@ function readCookie()
 {
 	userID = -1;
 	let data = document.cookie;
+    console.log(document.cookie);
 	let splits = data.split(",");
 	for(var i = 0; i < splits.length; i++) 
 	{
@@ -129,11 +130,11 @@ function readCookie()
 		}
 		else if( tokens[0] == "userId" )
 		{
-			userId = parseInt( tokens[1].trim() );
+			userID = parseInt( tokens[1].trim() );
 		}
 	}
 	
-	if( userId < 0 )
+	if( userID < 0 )
 	{
 		window.location.href = "index.html";
 	}
@@ -381,7 +382,7 @@ function addContact(event) {
     let contactAddress = data.get("address");
     
     
-    if(!contactFirstName || !contactLastName || !contactUserID || !contactAddress || !contactPhone || !contactEmail) {
+    if(!contactFirstName || !contactLastName || !contactAddress || !contactPhone || !contactEmail) {
         alert('Please enter all contact details.');
         
         return;
