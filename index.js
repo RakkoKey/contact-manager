@@ -224,9 +224,35 @@ function displayContacts(contacts) { //the contacts to display
         //addButton.textContent = 'Add Contact';
         
         editButton.addEventListener('click', function edit() {
-            //add logic for editing contact
-            name = document.createElement("input");
-            editContact(contact);
+            //add input fields under respective boxes
+            let newName = document.createElement("input");
+            newName.setAttribute("type","text");
+            name.appendChild(newName);
+            
+
+            let newAddress = document.createElement("input");
+            newAddress.setAttribute("type","text");
+            address.appendChild(newAddress);
+
+            let newEmail = document.createElement("input");
+            newEmail.setAttribute("type","text");
+            email.appendChild(newEmail);
+
+
+            let newPhone = document.createElement("input");
+            newPhone.setAttribute("type","text");
+            phoneNumber.appendChild(newPhone);
+
+            let submitButton = document.createElement("button");
+            submitButton.setAttribute("type", "submit");
+            submitButton.addEventListener('submit', function(){
+                console.log("test");
+            })
+            
+            buttons.append(submitButton)
+
+
+            //editContact(contact);
         });
         
         deleteButton.addEventListener('click',function del() {
@@ -424,6 +450,8 @@ function removeContact(contact) {
 
     let contactData = {
         userID: userID,
+        email: contact.email,
+        address: contact.address,
         phoneNumber: contact.phoneNumber,
         firstName: contact.firstName,
         lastName: contact.lastName,
