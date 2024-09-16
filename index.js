@@ -574,6 +574,7 @@ document.addEventListener('DOMContentLoaded', function(){
             addForm.addEventListener('submit', function openForm(e){
                 addContact(e);
                 addForm.removeEventListener('submit', openForm);
+                addForm.classList.add('hidden');
             });
         });
     }
