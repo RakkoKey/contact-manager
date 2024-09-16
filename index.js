@@ -412,30 +412,7 @@ function addContact(event) {
 
 
 /* Function to remove a contact */
-function removeContact(contacts) {
-    
-    // Add logic to handle removing a contact
-    //let contactId = documentById('contactId').value;
-    //let contactPhone = document.getElementById('contactPhone').value;
-    //let contactFirstName = document.getElementById('contactFirstName').value;
-    //let contactLastName = document.getElementById('contactLastName').value;
-
-    /*if(!Array.isArray(contacts)) {
-        console.log("Contacts not an array");
-        return;
-    }
-    
-    let contactToDel = prompt("Enter name of contact to be deleted:");
-    if (!contactToDel) {
-        alert('Please enter a valid contact name.');
-        return;
-    }
-    */
-    
-    
-    
-    console.log(Array.isArray(contacts)); // needs to be true 
-    let contact = contacts.find(c => (c.firstName + " " + c.lastName).toLowerCase() === contactName.toLowerCase());
+function removeContact(contact) {
 
     if(!contact) {
         alert("Contact not found.");
@@ -446,11 +423,10 @@ function removeContact(contacts) {
         
 
     let contactData = {
+        userID: userID,
+        phoneNumber: contact.phoneNumber,
         firstName: contact.firstName,
         lastName: contact.lastName,
-        address: contact.address,
-        email: contact.email,
-        phone: contact.phoneNumber,
     }
 
 
