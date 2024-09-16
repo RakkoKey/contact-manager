@@ -216,13 +216,13 @@ function displayContacts(contacts) { //the contacts to display
         //editButton.textContent = 'Edit Contact';
         //deleteButton.textContent = 'Delete Contact';
         //addButton.textContent = 'Add Contact';
-
+        /*
         editButton.addEventListener('click', function edit() {
             //add logic for editing contact
             
             editContact(contact);
         });
-        
+        */
         deleteButton.addEventListener('click',function del() {
             //remove contact from database
             //removeContact(contacts[i]);
