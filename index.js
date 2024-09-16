@@ -597,7 +597,9 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
     readCookie();
-    console.log(userID);
+    if(userID > 0){
+        loadContacts();
+    }
 })
 
 
