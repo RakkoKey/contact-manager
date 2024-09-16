@@ -244,11 +244,11 @@ function displayContacts(contacts) { //the contacts to display
             phoneNumber.appendChild(newPhone);
 
             let submitButton = document.createElement("button");
-            submitButton.setAttribute("type", "submit");
-            submitButton.innerHTML("Submit");
-            submitButton.addEventListener('submit', function(){
+            submitButton.innerHTML = "Submit";
+            submitButton.addEventListener('click', function(){
                 console.log("test");
                 editButton.disabled = false;
+                submitButton.remove();
             })
             editButton.disabled = true;
 
