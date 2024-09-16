@@ -13,7 +13,8 @@ const addContactButton = document.getElementById('addButton');
 const removeContactButton = document.getElementById('removeButton');
 const editContactButton = document.getElementById('editButton');
 
-
+//forms
+const addForm = document.getElementById("addContact");
 
 
 
@@ -107,7 +108,7 @@ function saveCookie()
 	let date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
-    
+    console.log(document.cookie);
 }
 function readCookie()
 {
@@ -340,6 +341,8 @@ function verifyLogin(username, password){
                 userID = userJSON.id;
                 firstName = userJSON.firstName;
                 lastName = userJSON.firstName;
+                saveCookie();
+                
 		        window.location.href = "contact.html";
 		
                 console.log("Login Verified!");
@@ -584,7 +587,13 @@ document.addEventListener('DOMContentLoaded', function(){
         searchButton.addEventListener('submit', searchContact);
     }
     if(addContactButton){
-        addContactButton.addEventListener('submit', addContact);
+        addContactButton.addEventListener('click', function(){
+            addForm.classList.remove("hidden");
+            addForm.addEventListener('submit', function openForm(e){
+                addContact(e);
+                addForm.removeEventListener('submit', openForm);
+            });
+        });
     }
 })
 
