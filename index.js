@@ -143,7 +143,7 @@ function loadContacts() {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let response = JSON.parse(xhr.responseText);
-                if (response.contacts) {
+                if (Array.isArray(response.contacts)) {
                     displayContacts(response.contacts);
                     window.location.href = "contact.html";
                 } else {
@@ -419,6 +419,11 @@ function removeContact(contacts) {
     //let contactFirstName = document.getElementById('contactFirstName').value;
     //let contactLastName = document.getElementById('contactLastName').value;
 
+    if(!Array.isArray(contacts)) {
+        console.log("Contacts not an array");
+        return;
+    }
+    
     let contactToDel = prompt("Enter name of contact to be deleted:");
     if (!contactToDel) {
         alert('Please enter a valid contact name.');
@@ -428,7 +433,7 @@ function removeContact(contacts) {
     
     
     if (confirm("Are you sure you want to delete " + contactToDel+ " ?" )) {
-        
+        console.log(Array.isArray(contacts)); // needs to be true 
         let contact = contacts.find(c => (c.firstName + " " + c.lastName).toLowerCase() === contactName.toLowerCase());
 
         if(!contact) {
