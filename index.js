@@ -145,7 +145,7 @@ function loadContacts() {
                 let response = JSON.parse(xhr.responseText);
                 if (Array.isArray(response.contacts)) {
                     displayContacts(response.contacts);
-                    window.location.href = "contact.html";
+                    //don't need this window.location.href = "contact.html";
                 } else {
                     console.log('No contacts found.');
                     contacts = [];
@@ -214,9 +214,9 @@ function displayContacts(contacts) { //the contacts to display
             removeContact(contact);
         });
 
-        addButton.addEventListener('click', function add() {
+        addButton.addEventListener('submit', function add() {
 
-            addContact(contact);
+            addContact();
 
         });
 
@@ -348,39 +348,45 @@ function clearForm() {
 }
 
 /* Function to add a contact */
-function addContact(contact) {
+function addContact(event) {
     console.log('Adding contact...');
     // Add logic to handle adding a contact
-    //event.preventDefault();
-    //const data = new FormData(event.target);
-    /*
-    let contactName = data.get("name");
-    let contactAddress = data.get("address");
+    event.preventDefault();
+    const data = new FormData(event.target);
+    let contactFirstName = data.get("firstName");
+    let contactLastName = data.get("lastName");
     let contactEmail = data.get("email");
     let contactPhone = data.get("phone");
-    */
-
-    /*let contactName = contact.name;
+    let contactAddress = data.get("address");
+    let contactUserID = data.get("userID");
+    
+    /*
+    let contactFirstName = contact.firstName;
+    let contactLastName = contact.lastName;
     let contactAddress = contact.address;
     let contactPhone = contact.phoneNumber;
     let contactEmail = contact.email;
     */
-    let contactName = prompt("Enter a new name:");
+    
+    //can't use prompt or alert
+    /*let contactName = prompt("Enter a new name:");
     let contactAddress = prompt("Enter a new address:");
     let contactEmail = prompt("Enter a new email:");
     let contactPhone = prompt("Enter a new phone number:");
-
-    if(!contactName || !contactAddress || !contactPhone || !contactEmail) {
+    */
+    if(!contactFirstName || !contactLastName || !contactUserID || !contactAddress || !contactPhone || !contactEmail) {
         alert('Please enter all contact details.');
         
         return;
     }
 
     let contactData = {
-        name: contactName,
+        firstName: contactFirstName,
+        lastName: contactLastName,
         address: contactAddress,
         email: contactEmail,
-        phone: contactPhone
+        phone: contactPhone,
+        id: contactUserID
     };
 
     //Sending payload to PHP 
@@ -445,7 +451,8 @@ function removeContact(contacts) {
         
 
         let contactData = {
-            name: contact.name,
+            firstName: contact.firstName,
+            lastName: contact.lastName,
             address: contact.address,
             email: contact.email,
             phone: contact.phoneNumber
