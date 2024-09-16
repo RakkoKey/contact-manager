@@ -429,7 +429,7 @@ function removeContact(contacts) {
     //let contactFirstName = document.getElementById('contactFirstName').value;
     //let contactLastName = document.getElementById('contactLastName').value;
 
-    if(!Array.isArray(contacts)) {
+    /*if(!Array.isArray(contacts)) {
         console.log("Contacts not an array");
         return;
     }
@@ -439,57 +439,54 @@ function removeContact(contacts) {
         alert('Please enter a valid contact name.');
         return;
     }
+    */
     
     
     
-    if (confirm("Are you sure you want to delete " + contactToDel+ " ?" )) {
-        console.log(Array.isArray(contacts)); // needs to be true 
-        let contact = contacts.find(c => (c.firstName + " " + c.lastName).toLowerCase() === contactName.toLowerCase());
+    console.log(Array.isArray(contacts)); // needs to be true 
+    let contact = contacts.find(c => (c.firstName + " " + c.lastName).toLowerCase() === contactName.toLowerCase());
 
-        if(!contact) {
-            alert("Contact not found.");
-            return;
-        }
+    if(!contact) {
+        alert("Contact not found.");
+        return;
+    }
         
-        console.log("Removing contact: ", contact);
+    console.log("Removing contact: ", contact);
         
 
-        let contactData = {
-            firstName: contact.firstName,
-            lastName: contact.lastName,
-            address: contact.address,
-            email: contact.email,
-            phone: contact.phoneNumber
-        };
+    let contactData = {
+        firstName: contact.firstName,
+        lastName: contact.lastName,
+        address: contact.address,
+        email: contact.email,
+        phone: contact.phoneNumber
+    };
 
 
-        //Sending payload to PHP 
-        let url = urlBase + "/DeleteContact." + extension;
-        let payload = JSON.stringify(contactData);
-        let xhr = new XMLHttpRequest();
-	    xhr.open("POST", url, true);
-	    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    //Sending payload to PHP 
+    let url = urlBase + "/DeleteContact." + extension;
+    let payload = JSON.stringify(contactData);
+    let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-        try
-	    {
-		    xhr.onreadystatechange = function() 
-		    {
-			    if (this.readyState == 4 && this.status == 200) 
-			    {
-				    console.log("Contact Deleted");
-                    loadContacts();
-			    }
-		    };
-		    xhr.send(payload);
-	    }
-	    catch(err)
-	    {
-		    console.log(err.message);
-	    }
+    try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				console.log("Contact Deleted");
+                loadContacts();
+			}
+		};
+		xhr.send(payload);
+	}
+	catch(err)
+	{
+		console.log(err.message);
+	}
 
-    
-    }   
-    
 
 }
 

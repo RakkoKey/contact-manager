@@ -63,7 +63,7 @@
     <div class="buttonContainer">
         
         <div class="addContact">
-            <button type="button" id="addContactButton">Add Contact</button>
+            
             <form id="addContactForm" action="/add-contact" style="display: none;">
                 <div class="addContactWrapper">
                     <span class="plus-icon"><i class="fas fa-plus"></i></span>
@@ -93,8 +93,7 @@
     
         </div>
         <div class="removeContact">
-            <button type="button" id="removeContactButton">Remove Contact</button>
-            <form id="removeContactForm" action="/remove-contact" style="display: none;">
+            <form id="removeContactForm" action="/remove-contact">
                 <div class="removeContactWrapper">
                     <span class="minus-icon"><i class="fas fa-minus"></i></span>
                     
@@ -119,8 +118,8 @@
     
         </div>
         <div class="editContact">
-            <button type="button" id="editContactButton">Edit Contact</button>
-            <form id="editContactForm" action="/edit-contact" style="display: none;">
+            
+            <form id="editContactForm" action="/edit-contact">
                 
                 <div class="editContactWrapper">
                     <span class="edit-icon"><i class="fas fa-edit"></i></span>
