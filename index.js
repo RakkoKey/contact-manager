@@ -24,7 +24,7 @@ function performLogin(event) {
     event.preventDefault(); // Prevent form from submitting the default way
     const data = new FormData(event.target);
 
-    let username = data.get("username")
+    let username = data.get("username");
     let password = data.get("password");
 
     if (validateForm(username, password)) {
