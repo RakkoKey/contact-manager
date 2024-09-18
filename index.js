@@ -575,7 +575,7 @@ function editContact(newFirst, newLast, newAddress, newEmail, newPhone, contactI
     
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+
     if(loginButton){
         loginButton.addEventListener('submit', performLogin)
     }
@@ -601,10 +601,12 @@ document.addEventListener('DOMContentLoaded', function(){
             });
         });
     }
-    readCookie();
+    
     if(userID > 0){
+        console.log(userID);
+        readCookie();
         loadContacts();
     }
-})
+
 
 
