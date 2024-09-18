@@ -225,10 +225,13 @@ function displayContacts(contacts) { //the contacts to display
         
         editButton.addEventListener('click', function edit() {
             //add input fields under respective boxes
-            let newName = document.createElement("input");
-            newName.setAttribute("type","text");
-            name.appendChild(newName);
+            let newFirst = document.createElement("input");
+            newFirst.setAttribute("type","text");
+            name.appendChild(newFirst);
             
+            let newLast = document.createElement("input");
+            newLast.setAttribute("type", "text");
+            name.appendChild(newLast)
 
             let newAddress = document.createElement("input");
             newAddress.setAttribute("type","text");
@@ -252,7 +255,8 @@ function displayContacts(contacts) { //the contacts to display
                 editContact(newName.value, newAddress.value, newEmail.value, newPhone.value);
                 //remove everything
 
-                newName.remove();
+                newFirst.remove();
+                newLast.remove(); 
                 newAddress.remove()
                 newEmail.remove();
                 newPhone.remove();
@@ -498,7 +502,7 @@ function removeContact(contact) {
 }
 
 /* Function to edit a contact */
-function editContact(newName, newAddress, newEmail, newPhone) {
+function editContact(newFirst, newLast, newAddress, newEmail, newPhone) {
     // Add logic to handle editing a contact
     
 
@@ -506,13 +510,22 @@ function editContact(newName, newAddress, newEmail, newPhone) {
     //TODO: Determine if we want to implement unique ID for a contact,
     //if so then we should update that also.
     //let contactId = document.getElementById('contactId').value; 
-    
+    /*
+    let nameString = newName.split(" ")
+    let newFirst = nameString[0];
+    let newLast = " ";
+    if(nameString[1]){
+        newLast = nameString[1];
+    }
+    */
 
     let updatedContactData = {
-        name: newName,
+        firstName: newFirst,
+        lastName: newLast,
         address: newAddress,
         email: newEmail,
-        phone: newPhone,
+        phoneNumber: newPhone,
+        ID: userID,
     }
     
     //Process if data fields are empty, 
