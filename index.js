@@ -248,7 +248,10 @@ function displayContacts(contacts) { //the contacts to display
             submitButton.addEventListener('click', function(){
                 console.log("test");
                 editButton.disabled = false;
+                
+                editContact(newName.value, newAddress.value, newEmail.value, newPhone.value);
                 //remove everything
+
                 newName.remove();
                 newAddress.remove()
                 newEmail.remove();
@@ -261,7 +264,7 @@ function displayContacts(contacts) { //the contacts to display
             buttons.append(submitButton)
 
 
-            //editContact(contact);
+            
         });
         
         deleteButton.addEventListener('click',function del() {
@@ -495,7 +498,7 @@ function removeContact(contact) {
 }
 
 /* Function to edit a contact */
-function editContact(contact) {
+function editContact(newName, newAddress, newEmail, newPhone) {
     // Add logic to handle editing a contact
     
 
@@ -505,22 +508,11 @@ function editContact(contact) {
     //let contactId = document.getElementById('contactId').value; 
     
 
-    //let updatedName = document.getElementById('updatedName').value;
-    //let updatedAddress = document.getElementById('updatedAddress').value;
-    //let updatedEmail = document.getElementById('updatedEmail').value;
-    //let updatedPhone = document.getElementById('updatedPhone').value;
-
-    let updatedName = prompt("Enter a new name: ", contact.firstName + " " + contact.lastName);
-    let updatedAddress = prompt("Enter a new address: ", contact.address);
-    let updatedEmail = prompt("Enter a new email: ", contact.email);
-    let updatedPhone = prompt("Enter a new phone number: ", contact.phoneNumber);
-    
-
     let updatedContactData = {
-        name: updatedName || (contact.firstName + " " + contact.lastName),
-        address: updatedAddress || contact.address,
-        email: updatedEmail || contact.email,
-        phone: updatedPhone || contact.phoneNumber,
+        name: newName,
+        address: newAddress,
+        email: newEmail,
+        phone: newPhone,
     }
     
     //Process if data fields are empty, 
