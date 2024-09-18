@@ -252,7 +252,7 @@ function displayContacts(contacts) { //the contacts to display
                 console.log("test");
                 editButton.disabled = false;
                 
-                editContact(newName.value, newAddress.value, newEmail.value, newPhone.value);
+                editContact(newFirst.value, newLast.value, newAddress.value, newEmail.value, newPhone.value, contact.ID);
                 //remove everything
 
                 newFirst.remove();
@@ -502,7 +502,7 @@ function removeContact(contact) {
 }
 
 /* Function to edit a contact */
-function editContact(newFirst, newLast, newAddress, newEmail, newPhone) {
+function editContact(newFirst, newLast, newAddress, newEmail, newPhone, contactID) {
     // Add logic to handle editing a contact
     
 
@@ -525,7 +525,7 @@ function editContact(newFirst, newLast, newAddress, newEmail, newPhone) {
         address: newAddress,
         email: newEmail,
         phoneNumber: newPhone,
-        ID: userID,
+        ID: contactID,
     }
     
     //Process if data fields are empty, 
