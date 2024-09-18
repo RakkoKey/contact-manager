@@ -310,11 +310,11 @@ function searchContact(event) {
 
     let str1 = "";
     let str2 = "";
-    let type = "";
+    let type =  0;
 
     if(searchQuery[0] === "#" || searchQuery[0] === "(" || !isNaN(searchQuery[0])){
         str1 = searchQuery;
-        type = "phone";
+        type = 3; 
     }
 
     else {
@@ -322,12 +322,12 @@ function searchContact(event) {
         
         if(words.length === 1) {
             str1 = words[0];
-            type = 'single';
+            type = 1;
         }
         else {
             str1 = words[0];
             str2 = words.slice(1).join(" ");
-            type = "multi";
+            type = 2;
         }
     }
 
@@ -537,22 +537,8 @@ function removeContact(contact) {
 
 /* Function to edit a contact */
 function editContact(newFirst, newLast, newAddress, newEmail, newPhone, contactID) {
-    // Add logic to handle editing a contact
     
-
-    //Update all previous contact info:
-    //TODO: Determine if we want to implement unique ID for a contact,
-    //if so then we should update that also.
-    //let contactId = document.getElementById('contactId').value; 
-    /*
-    let nameString = newName.split(" ")
-    let newFirst = nameString[0];
-    let newLast = " ";
-    if(nameString[1]){
-        newLast = nameString[1];
-    }
-    */
-
+    // Add logic to handle editing a contact
     let updatedContactData = {
         firstName: newFirst,
         lastName: newLast,
@@ -561,26 +547,6 @@ function editContact(newFirst, newLast, newAddress, newEmail, newPhone, contactI
         phoneNumber: newPhone,
         ID: contactID,
     }
-    
-    //Process if data fields are empty, 
-    //if so then enable user to add to the data object.
-    /*if(updatedName) {
-        contactData.name = updatedName;
-    }
-
-    if(updatedAddress) {
-        contactData.address = updatedAddress;
-    }
-
-    if(updatedEmail) {
-        contactData.email = updatedEmail;
-    }
-    if(updatedPhone) {
-        contactData.phone = updatedPhone;
-    }
-    */
-
-
 
     //Sending payload to PHP 
     let url = urlBase + "/EditContact." + extension;
