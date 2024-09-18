@@ -579,8 +579,14 @@ document.addEventListener('DOMContentLoaded', function(){
     if(loginButton){
         loginButton.addEventListener('submit', performLogin)
     }
+    //if(searchButton){
+        //searchButton.addEventListener('submit', searchContact);
+    //}
     if(searchButton){
-        searchButton.addEventListener('submit', searchContact);
+        searchButton.addEventListener('submit', function(e){
+            e.preventDefault();
+            searchContact(e);
+        });
     }
     if(signupButton){
         signupButton.addEventListener('click', performSignup);
