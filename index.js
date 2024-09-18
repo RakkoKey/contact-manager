@@ -297,7 +297,7 @@ function displayContacts(contacts) { //the contacts to display
 
 /* Function to search contacts */
 function searchContact(event) {
-    event.preventDefault();
+    //event.preventDefault();
     
     let searchQuery = document.getElementById('searchForm').value;
 
