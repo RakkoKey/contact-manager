@@ -41,7 +41,7 @@ function performLogin(event) {
 /* Function for logout */
 function performLogout() {
     console.log('Logging out...');
-    userId = 0;
+    userID = 0;
     firstName = "";
     lastName = "";
     // Add more logic to clear user session and redirect
@@ -307,8 +307,42 @@ function searchContact(event) {
     }
     console.log('Searching for:', searchQuery);
     // Add search logic
+
+    let str1 = "";
+    let str2 = "";
+    let type = "";
+
+    if(searchQuery[0] === "#" || searchQuery[0] === "(" || !isNaN(searchQuery[0])){
+        str1 = searchQuery;
+        type = "phone";
+    }
+
+    else {
+        let words = searchQuery.split(" ");
+        
+        if(words.length === 1) {
+            str1 = words[0];
+            type = 'single';
+        }
+        else {
+            str1 = words[0];
+            str2 = words.slice(1).join(" ");
+            type = "multi";
+        }
+    }
+
+    console.log("Succesfully parsed search:", {str1, str2, type });
+
     let url = urlBase + "/SearchContact." + extension;
-    let data = {query: searchQuery};
+    
+    //let data = {query: searchQuery};
+    let data = {
+        type: type,
+        userID: userID,
+        str1: str1,
+        str2: str2,
+    }
+    
     let payload = JSON.stringify(data);
 
     let xhr = new XMLHttpRequest();
