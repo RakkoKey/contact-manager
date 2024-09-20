@@ -296,10 +296,10 @@ function displayContacts(contacts) { //the contacts to display
 }
 
 /* Function to search contacts */
-function searchContact(event) {
+function searchContact() {
     //event.preventDefault();
-    
-    let searchQuery = document.getElementById('searchForm').value;
+    readCookie();
+    let searchQuery = document.getElementById('searchbar').value.toLowerCase();
 
     if(!searchQuery) {
         alert('Please enter valid search.');
@@ -335,7 +335,7 @@ function searchContact(event) {
 
     let url = urlBase + "/SearchContact." + extension;
     
-    //let data = {query: searchQuery};
+    
     let data = {
         type: type,
         userID: userID,
@@ -353,19 +353,18 @@ function searchContact(event) {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200){
                 let response = JSON.parse(xhr.responseText);
+                displayContacts(response.results);
 
-                if(response.contacts) {
-                    displayContacts(response.contacts);
-                }
-                else {
-                    alert('Contact not found.');
-                }
+            }
+            else {
+                alert("Contact not found.");
+                displayContacts([]);
             }
         };
         xhr.send(payload);
     } 
     catch (err) {
-        console.log(err.message);
+        console.log("Error during search:", err.message);
     }
 
 }
@@ -583,10 +582,7 @@ function editContact(newFirst, newLast, newAddress, newEmail, newPhone, contactI
         //searchButton.addEventListener('submit', searchContact);
     //}
     if(searchButton){
-        searchButton.addEventListener('submit', function(e){
-            e.preventDefault();
-            searchContact(e);
-        });
+        searchButton.addEventListener('submit', searchContact);
     }
     if(signupButton){
         signupButton.addEventListener('click', performSignup);
