@@ -296,7 +296,7 @@ function displayContacts(contacts) { //the contacts to display
 }
 
 /* Function to search contacts */
-function searchContact(event) {
+function searchContact() {
     
     let searchQuery = document.getElementById('searchbar').value;
 
@@ -330,7 +330,7 @@ function searchContact(event) {
         }
     }
 
-    console.log("Succesfully parsed search:", {str1, str2, type });
+    
 
     let url = urlBase + "/SearchContact." + extension;
     
@@ -352,13 +352,15 @@ function searchContact(event) {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200){
                 let response = JSON.parse(xhr.responseText);
-                displayContacts(response.results);
+                if(response.error){
+                    displayContacts([]);
+                }else{
+                    displayContacts(response.results);
+                }
+                
 
             }
-            else {
-                alert("Contact not found.");
-                displayContacts([]);
-            }
+            
         };
         xhr.send(payload);
     } 
