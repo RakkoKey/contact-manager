@@ -296,10 +296,9 @@ function displayContacts(contacts) { //the contacts to display
 }
 
 /* Function to search contacts */
-function searchContact() {
-    //event.preventDefault();
-    readCookie();
-    let searchQuery = document.getElementById('searchbar').value.toLowerCase();
+function searchContact(event) {
+    event.preventDefault();
+    let searchQuery = document.getElementById('searchbar').value;
 
     if(!searchQuery) {
         alert('Please enter valid search.');
@@ -320,13 +319,13 @@ function searchContact() {
     else {
         let words = searchQuery.split(" ");
         
-        if(words.length === 1) {
+        if(words.length == 1) {
             str1 = words[0];
             type = 1;
         }
         else {
             str1 = words[0];
-            str2 = words.slice(1).join(" ");
+            str2 = words[1];
             type = 2;
         }
     }
