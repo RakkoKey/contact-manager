@@ -297,7 +297,7 @@ function displayContacts(contacts) { //the contacts to display
 
 /* Function to search contacts */
 function searchContact(event) {
-    event.preventDefault();
+    
     let searchQuery = document.getElementById('searchbar').value;
 
     if(!searchQuery) {
@@ -341,7 +341,7 @@ function searchContact(event) {
         str1: str1,
         str2: str2,
     }
-    
+    console.log(data);
     let payload = JSON.stringify(data);
 
     let xhr = new XMLHttpRequest();
@@ -581,7 +581,7 @@ function editContact(newFirst, newLast, newAddress, newEmail, newPhone, contactI
         //searchButton.addEventListener('submit', searchContact);
     //}
     if(searchButton){
-        searchButton.addEventListener('submit', searchContact);
+        searchButton.addEventListener('click', searchContact);
     }
     if(signupButton){
         signupButton.addEventListener('click', performSignup);
