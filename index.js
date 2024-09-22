@@ -345,6 +345,9 @@ function verifyLogin(username, password){
                 //GET THE DATA
 			    let userJSON = JSON.parse(xhr.responseText);
                 if(userJSON.id == 0){
+                    if(document.getElementById("loginForm").lastChild.textContent == "Invalid Username or Password!"){
+                        return;
+                    }
                     let error = document.createElement("p");
                     error.setAttribute("id", "error");
                     error.innerHTML = "Invalid Username or Password!";
