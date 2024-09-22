@@ -78,8 +78,10 @@ function verifySignUp(username, password){
                 //GET THE DATA
 			    let userJSON = JSON.parse(xhr.responseText);
                 if(userJSON.id == 0){
-                    console.log(userID);
-                    console.log("Invalid Login");
+                    let error = document.createElement("p");
+                    error.setAttribute("id", "error");
+
+                    document.getElementById("loginForm").appendChild(error);
                     return;
                 }
                 //populate data
