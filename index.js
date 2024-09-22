@@ -52,59 +52,6 @@ function performSignup(){
     window.location.href = "signup.html";
 }
 
-function verifySignUp(username, password){
-    let data = {
-        login: username,
-        password: password,
-    }
-
-
-    let url = urlBase + "/SignUpContMang." + extension;
-	console.log(data);
-    
-    //sending payload to php
-    let payload = JSON.stringify(data);
-
-    let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    
-    try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-                //GET THE DATA
-			    let userJSON = JSON.parse(xhr.responseText);
-                if(userJSON.id == 0){
-                    let error = document.createElement("p");
-                    error.setAttribute("id", "error");
-
-                    document.getElementById("loginForm").appendChild(error);
-                    return;
-                }
-                //populate data
-                userID = userJSON.id;
-                firstName = userJSON.firstName;
-                lastName = userJSON.firstName;
-
-                saveCookie();
-
-		        window.location.href = "contact.html";
-		
-                console.log("Login Verified!");
-                console.log(document.cookie);
-			}
-		};
-		xhr.send(payload);
-	}
-	catch(err)
-	{
-		console.log(err.message);
-	}
-    
-}
 
 //save userID
 function saveCookie()
@@ -398,8 +345,10 @@ function verifyLogin(username, password){
                 //GET THE DATA
 			    let userJSON = JSON.parse(xhr.responseText);
                 if(userJSON.id == 0){
-                    console.log(userID);
-                    console.log("Invalid Login");
+                    let error = document.createElement("p");
+                    error.setAttribute("id", "error");
+
+                    document.getElementById("loginForm").appendChild(error);
                     return;
                 }
                 //populate data
