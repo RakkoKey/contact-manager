@@ -31,10 +31,20 @@ function performLogin(event) {
         console.log('Logging in with:', username, password);
         // Add your login API request here
         verifyLogin(username,password);
-
+        
         
     } else {
-        alert('Please enter a valid username and password.');
+        let child = document.getElementById("loginForm").lastChild;
+        if(child.getAttribute("id") == "error"){
+            child.innerHTML == "Login is Blank!";
+            return;
+        }
+        let error = document.createElement("p");
+        error.setAttribute("id", "error");
+        error.innerHTML = "Login is Blank!";
+
+        document.getElementById("loginForm").appendChild(error);
+
     }
 }
 
@@ -345,7 +355,9 @@ function verifyLogin(username, password){
                 //GET THE DATA
 			    let userJSON = JSON.parse(xhr.responseText);
                 if(userJSON.id == 0){
-                    if(document.getElementById("loginForm").lastChild.textContent == "Invalid Username or Password!"){
+                    let child = document.getElementById("loginForm").lastChild;
+                    if(child.getAttribute("id") == "error"){
+                        child.innerHTML == "Invalid Username or Password!";
                         return;
                     }
                     let error = document.createElement("p");
