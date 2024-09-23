@@ -354,7 +354,9 @@ function verifyLogin(username, password){
 			{
                 //GET THE DATA
 			    let userJSON = JSON.parse(xhr.responseText);
+		console.log("outside function");
                 if(userJSON.id == 0){
+			console.log("test");
                     let child = document.getElementById("loginForm").lastChild;
                     if(child.id == "error"){
                         child.innerHTML = "Invalid Username or Password!";
@@ -373,9 +375,9 @@ function verifyLogin(username, password){
                 lastName = userJSON.lastName;
                 console.log(userJSON);
                 saveCookie();
-                
+		                
 		        window.location.href = "contact.html";
-		
+		console.log(document.cookie);		
                 console.log("Login Verified!");
 			}
 		};
@@ -566,8 +568,8 @@ function editContact(newFirst, newLast, newAddress, newEmail, newPhone, contactI
             });
         });
     }
-    
-    if(userID > 0){
+    console.log(userID);
+    if(userID >=  0){
         console.log(userID);
         readCookie();
         loadContacts();
