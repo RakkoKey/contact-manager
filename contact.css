@@ -150,7 +150,7 @@ h1, h2 {
     transform: scale(1.05); 
 }
 /*TODO: Get the submit button centered for the search*/
-.searchButton{
+#searchButton{
     display: flex;
     justify-content: center;
     align-items: center;
