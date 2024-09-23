@@ -152,6 +152,7 @@ h1, h2 {
 /*TODO: Get the submit button centered for the search*/
 .search{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
