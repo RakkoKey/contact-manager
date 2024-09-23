@@ -331,6 +331,61 @@ h1, h2 {
     display: none;
 } 
 
+.contactForm input[type="text"],
+.contactForm input[type="email"],
+.contactForm input[type="tel"] {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #bdc3c7;
+    border-radius: 15px; 
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px; 
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.contactForm input[type="text"]:focus,
+.contactForm input[type="email"]:focus,
+.contactForm input[type="tel"]:focus {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+    outline: none;
+}
+
+
+.addContact button,
+.contactForm button {
+    width: 80%;
+    padding: 12px;
+    border-radius: 15px;
+    border: 2px solid #bdc3c7;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.addContact button:hover,
+.contactForm button:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.addContact button:active,
+.contactForm button:active {
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+
+.contactForm {
+    padding: 20px;
+    border-radius: 20px; 
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; 
+    margin-top: 20px;
+    width: 60%;
+    max-width: 600px;
+}
+
 /* 
 body {
     font-family: Arial, sans-serif;
