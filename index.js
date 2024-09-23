@@ -48,9 +48,10 @@ function performLogin(event) {
 /* Function for logout */
 function performLogout() {
     console.log('Logging out...');
-    userID = 0;
+    userID = -1;
     firstName = "";
     lastName = "";
+    document.cookie = '';
     // Add more logic to clear user session and redirect
     window.location.href = "index.html";
 }
@@ -93,7 +94,7 @@ function readCookie()
 		}
 	}
 	
-	if( userID < 0 )
+	if( userID < -1 )
 	{
 		window.location.href = "index.html";
 	}
@@ -141,7 +142,7 @@ function displayContacts(contacts) { //the contacts to display
     const contactsTable = document.getElementById('contactTable');
 
     // clear placeholders
-    contactsTable.innerHTML = '';
+    //contactsTable.innerHTML = '';
     
     if (!contacts || contacts.length === 0){
         let emptyMessage = document.createElement('tr');
