@@ -139,10 +139,11 @@ function loadContacts() {
 function displayContacts(contacts) { //the contacts to display
 
     //we want to get the element that holds all the contacts
-    const contactsTable = document.getElementById('contactTable');
+    const contactsTable = document.getElementById('contactsDisplay');
 
     // clear placeholders
     //contactsTable.innerHTML = '';
+    clearContacts();
     
     if (!contacts || contacts.length === 0){
         let emptyMessage = document.createElement('tr');
@@ -251,7 +252,9 @@ function displayContacts(contacts) { //the contacts to display
 
     }
 }
-
+function clearContacts(){
+    $('#contactTable tbody').empty();
+}
 /* Function to search contacts */
 function searchContact() {
     
