@@ -143,7 +143,7 @@ function displayContacts(contacts) { //the contacts to display
 
     // clear placeholders
     //contactsTable.innerHTML = '';
-    clearContacts();
+    //clearContacts();
     
     if (!contacts || contacts.length === 0){
         let emptyMessage = document.createElement('tr');
@@ -253,15 +253,16 @@ function displayContacts(contacts) { //the contacts to display
     }
 }
 function clearContacts(){
-    $('#contactTable tbody').empty();
+    $('#contactTable > tbody').empty();
 }
 /* Function to search contacts */
 function searchContact() {
     
     let searchQuery = document.getElementById('searchbar').value;
 
-    if(!searchQuery) {
-        alert('Please enter valid search.');
+    if(searchQuery == '') {
+        console.log("Blank query");
+        loadContacts();
         return;
     }
     console.log('Searching for:', searchQuery);
