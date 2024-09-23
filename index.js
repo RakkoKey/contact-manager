@@ -16,35 +16,6 @@ const editContactButton = document.getElementById('editButton');
 //forms
 const addForm = document.getElementById("addContact");
 
-// //nav bar icons
-// const barsIcon = document.getElementById("barsIcon");
-// const homeIcon = document.getElementById("homeIcon");
-// const addressBookIcon = document.getElementById("addressBookIcon");
-// const plusCircleIcon = document.getElementById("plusCircleIcon");
-// const infoCircleIcon = document.getElementById("infoCircleIcon");
-
-// if (barsIcon) {
-
-// }
-
-// if (homeIcon) {
-//     homeIcon.addEventListener("click", function() {
-//         console.log("homeIcon pressed.");
-//         window.location.href = "index.html";
-//     });
-// }
-
-// //if (addressBookIcon) {
-//     //addressBookIcon.addEventListener("click", loadContacts);
-//     //console.log("addressBookIcon pressed.");
-// //}
-
-// if (plusCircleIcon) {
-//     plusCircleIcon.addEventListener("click", addContact);
-//     console.log("plusCircleIcon pressed.");
-// }
-
-
 /* Function to handle login */ 
 function performLogin(event) {
     event.preventDefault(); // Prevent form from submitting the default way
