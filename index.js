@@ -143,7 +143,7 @@ function displayContacts(contacts) { //the contacts to display
 
     // clear placeholders
     //contactsTable.innerHTML = '';
-    //clearContacts();
+    clearContacts();
     
     if (!contacts || contacts.length === 0){
         let emptyMessage = document.createElement('tr');
