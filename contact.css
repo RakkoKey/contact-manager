@@ -1,17 +1,101 @@
-body{
-    font-family: 'Times New Roman', 'Arial';
-    height: 100vh;
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 }
+
+
+body{
+    font-family: 'Open Sans', 'Sans Serif';
+    background: linear-gradient(135deg, #457bb2, #6ab7d6); 
+    margin: 0;
+    padding: 20px;
+    color: #2c3e50; 
+    height: 100vh;
+    transition: background 0.3s ease-in-out;
+}
+
+
+/* Navbar Styles */
+.navbar {
+    background-color: #2c3e50; 
+    padding: 13px 0;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); 
+    position: fixed;
+    top: 0;
+    width: 97%;
+    z-index: 1000; 
+}
+
+.navbar .nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+    padding-left: 20px; 
+}
+.menu-icon {
+    justify-content: flex-start;
+    margin-right: auto; 
+    
+}
+
+.navbar .nav-links li {
+    margin: 0 35px; 
+}
+
+.navbar .nav-links a {
+    color: #f4f7f6;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+.navbar .nav-links a i {
+    font-size: 25px; 
+    color: #f4f7f6; 
+}
+
+
+.navbar .nav-links a:hover {
+    background-color: #34495e; 
+    color: #ecf0f1; 
+    border-radius: 6px; 
+}
+
+
+body {
+    padding-top: 70px; 
+}
+
+h1, h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 30px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 35px;
+    transition: text-shadow 0.3s ease-in-out;
+}
+
 .searchbar{
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    color: #2c3e50;
     
 }
 .searchbar form{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 .input-wrapper{
     position: relative;
@@ -23,48 +107,78 @@ body{
 .search-icon{
     position: absolute;
     left: 10px;
-    color: darkgrey;
+    /*color: darkgrey;*/
+    color: #7f8c8d;
 }
+
 .input-wrapper input[type="text"] {
     width: 100%;
-    padding: 5px 10px 5px 30px;
-    border: 2px solid darkgrey;
-    border-radius: 4px;
+    padding: 8px 10px 8px 35px; 
+    border: 2px solid #bdc3c7; 
+    
+    border-radius: 6px;
     text-align: center;
     box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
+
+.input-wrapper input[type="text"]:focus {
+    border-color: #547b95; 
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1); 
+}
+
 .searchbar input[type="text"] {
     margin-bottom: 10px;
     padding: 5px;
     border: 2px solid darkgrey;
     border-radius: 4px;
+    
 }
     
-.searchbar button{
-    padding: 5px 10px;
-    border: 3px solid darkgrey;
-    background-color: #f2f2f2;
+.searchbar button {
+    padding: 8px 12px;
+    border: 40px solid #bdc3c7; /* Softer border */
+    background-color: #f9f9f9; /* Light background */
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 6px; /* More rounded corners */
     margin-top: 10px;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
 }
+
 .searchbar button:hover {
-    background-color: #ddd;
+    background-color: #e0e0e0; 
+    transform: scale(1.05); 
+}
+/*TODO: Get the submit button centered for the search*/
+.searchButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 .contacts table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 30px;
+    background-color: #f4f7f6;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); 
 }
 
 .contacts th, .contacts td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 5px solid #e1cbcb;
+    padding: 12px;
     text-align: left;
+    transition: background-color 0.3s; 
 }
 
 .contacts th {
-    background-color: #f2f2f2;
+    background-color: #c7a8a8;
+    font-weight: bold;
+    border-color: #eaebeb;
+}
+
+.contacts td:hover {
+    background-color: #f0f0f0; 
 }
 
 .buttonContainer{
@@ -75,7 +189,7 @@ body{
 
 .addContact{
     margin-top: 20px;
-    /*display: flex;*/
+    display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
@@ -95,26 +209,28 @@ body{
     color: solid black;
 }
 .addContact button{
-    padding: 5px 15px; 
-    border: 3px solid darkgrey;
-    background-color: #f2f2f2;
+    padding: 8px 16px; 
+    border: 3px solid #bdc3c7;
+    background-color: #f9f9f9; 
     cursor: pointer;
-    border-radius: 4px;
-    text-align: center; 
+    border-radius: 6px; 
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px; 
+    transition: background-color 0.3s, transform 0.3s; 
 }
 .addContact button:hover {
-    background-color: #ddd;
+    background-color: #e0e0e0; 
+    transform: scale(1.05); 
 }
 
-/*-------------------------*/
+
 
 .removeContact{
     margin-top: 20px;
-    /*display: flex;*/
+    display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
@@ -134,27 +250,26 @@ body{
     color: solid black;
 }
 .removeContact button{
-    padding: 5px 15px; 
-    border: 3px solid darkgrey;
-    background-color: #f2f2f2;
+    padding: 8px 16px; 
+    border: 3px solid #bdc3c7; 
+    background-color: #f9f9f9; 
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 6px; 
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px; 
+    transition: background-color 0.3s, transform 0.3s; 
 }
 .removeContact button:hover {
-    background-color: #ddd;
+    background-color: #e0e0e0; 
+    transform: scale(1.05); 
 }
-
-
-/*--------------------------------*/
 
 .editContact{
     margin-top: 20px;
-    /*display: flex;*/
+    display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
@@ -174,31 +289,43 @@ body{
     color: solid black;
 }
 .editContact button{
-    padding: 5px 15px; 
-    border: 3px solid darkgrey;
-    background-color: #f2f2f2;
+
+    padding: 8px 16px; 
+    border: 3px solid #bdc3c7;
+    background-color: #f9f9f9; 
     cursor: pointer;
-    border-radius: 4px;
-    text-align: center; 
+    border-radius: 6px; 
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px; 
+    transition: background-color 0.3s, transform 0.3s; 
 }
 .editContact button:hover {
-    background-color: #ddd;
+    
+    background-color: #e0e0e0; 
+    transform: scale(1.05); 
 }
 
 
 .returnLink{
+    font-style: italic;
+    margin-top: 50px;
     width: 100%;
     text-align: center;
-    border: 2px solid darkgrey;
-    border-radius: 2px;
-    padding: 10px; 
-    display: inline-block; 
-    
+    border: 2px solid #bdc3c7; 
+    border-radius: 4px; 
+    padding: 14px; 
+    display: inline-block;
+    background-color: #f9f9f9; 
+    transition: background-color 0.3s, box-shadow 0.3s; 
 }
+.returnLink:hover {
+    background-color: #d7c3c3; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+}
+
 .hidden{
     display: none;
 }
