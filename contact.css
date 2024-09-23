@@ -1,4 +1,4 @@
-/* html, body {
+ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -329,9 +329,9 @@ h1, h2 {
 
 .hidden{
     display: none;
-} */
+} 
 
-/* General Styles */
+/* 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -343,7 +343,7 @@ h1, h2 {
     text-align: center;
 }
 
-/* Navbar Styles */
+
 .navbar {
     background-color: #333;
     padding: 10px;
@@ -364,7 +364,7 @@ h1, h2 {
     text-decoration: none;
 }
 
-/* Search Styles */
+
 .search {
     text-align: center;
     margin: 20px 0;
@@ -380,7 +380,6 @@ h1, h2 {
     margin-right: 8px;
 }
 
-/* Button Styles */
 .searchbar button,
 .buttonContainer button,
 .addContact button,
@@ -398,9 +397,9 @@ h1, h2 {
     font-family: "Google Sans", Roboto, Arial, sans-serif;
     font-size: 14px;
     font-weight: 500;
-    height: 48px; /* Consistent height */
+    height: 48px; 
     justify-content: center;
-    padding: 2px 24px; /* Adjusted padding for consistency */
+    padding: 2px 24px; 
     text-align: center;
     transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
     width: auto;
@@ -411,7 +410,7 @@ h1, h2 {
 .addContact button:hover,
 .removeContact button:hover,
 .editContact button:hover {
-    background: #F6F9FE; /* Hover color */
+    background: #F6F9FE; 
     color: #174ea6;
 }
 
@@ -429,16 +428,16 @@ h1, h2 {
 .removeContact button:focus,
 .editContact button:focus {
     outline: none;
-    border: 2px solid #4285f4; /* Focus outline color */
+    border: 2px solid #4285f4; 
 }
 
 .buttonContainer {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Space between buttons */
+    gap: 20px; 
 }
 
-/* Contacts Table Styles */
+
 .contacts {
     margin: 20px auto;
     width: 90%;
@@ -459,7 +458,7 @@ h1, h2 {
     background-color: #f2f2f2;
 }
 
-/* Form Styles */
+
 .contactForm {
     display: flex;
     flex-direction: column;
@@ -470,7 +469,7 @@ h1, h2 {
     margin: 5px 0;
 }
 
-/* Footer Styles */
+
 footer {
     text-align: center;
     margin: 20px 0;
@@ -478,6 +477,6 @@ footer {
 
 .returnLink {
     margin-top: 20px;
-}
+} */
 
-/* Additional Styles can be added here ... */
+
