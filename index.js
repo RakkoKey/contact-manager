@@ -35,8 +35,8 @@ function performLogin(event) {
         
     } else {
         let child = document.getElementById("loginForm").lastChild;
-        if(child.getAttribute("id") == "error"){
-            child.innerHTML == "Login is Blank!";
+        if(child.id == "error"){
+            child.innerHTML = "Login is Blank!";
             return;
         }
         let error = document.createElement("p");
@@ -371,6 +371,7 @@ function verifyLogin(username, password){
                 userID = userJSON.id;
                 firstName = userJSON.firstName;
                 lastName = userJSON.lastName;
+                console.log(userJSON);
                 saveCookie();
                 
 		        window.location.href = "contact.html";
