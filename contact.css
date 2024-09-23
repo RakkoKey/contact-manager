@@ -1,4 +1,4 @@
-html, body {
+/* html, body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -18,7 +18,7 @@ body{
 }
 
 
-/* Navbar Styles */
+
 .navbar {
     background-color: #2c3e50; 
     padding: 13px 0;
@@ -107,7 +107,6 @@ h1, h2 {
 .search-icon{
     position: absolute;
     left: 10px;
-    /*color: darkgrey;*/
     color: #7f8c8d;
 }
 
@@ -137,19 +136,19 @@ h1, h2 {
     
 .searchbar button {
     padding: 8px 12px;
-    border: 40px solid #bdc3c7; /* Softer border */
-    background-color: #f9f9f9; /* Light background */
+    border: 40px solid #bdc3c7;
+    background-color: #f9f9f9; 
     cursor: pointer;
-    border-radius: 6px; /* More rounded corners */
+    border-radius: 6px; 
     margin-top: 10px;
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+    transition: background-color 0.3s, transform 0.3s; 
 }
 
 .searchbar button:hover {
     background-color: #e0e0e0; 
     transform: scale(1.05); 
 }
-/*TODO: Get the submit button centered for the search*/
+
 .search{
     display: flex;
     flex-direction: column;
@@ -191,6 +190,7 @@ h1, h2 {
 .addContact{
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-bottom: 20px;
 }
@@ -329,4 +329,155 @@ h1, h2 {
 
 .hidden{
     display: none;
+} */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
 }
+
+h1, h2 {
+    text-align: center;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #333;
+    padding: 10px;
+}
+
+.nav-links {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Search Styles */
+.search {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-icon {
+    margin-right: 8px;
+}
+
+/* Button Styles */
+.searchbar button,
+.buttonContainer button,
+.addContact button,
+.removeContact button,
+.editContact button {
+    align-items: center;
+    appearance: none;
+    background-color: #fff;
+    border-radius: 24px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+    color: #3c4043;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px; /* Consistent height */
+    justify-content: center;
+    padding: 2px 24px; /* Adjusted padding for consistency */
+    text-align: center;
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+    width: auto;
+}
+
+.searchbar button:hover,
+.buttonContainer button:hover,
+.addContact button:hover,
+.removeContact button:hover,
+.editContact button:hover {
+    background: #F6F9FE; /* Hover color */
+    color: #174ea6;
+}
+
+.searchbar button:active,
+.buttonContainer button:active,
+.addContact button:active,
+.removeContact button:active,
+.editContact button:active {
+    box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+}
+
+.searchbar button:focus,
+.buttonContainer button:focus,
+.addContact button:focus,
+.removeContact button:focus,
+.editContact button:focus {
+    outline: none;
+    border: 2px solid #4285f4; /* Focus outline color */
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+}
+
+/* Contacts Table Styles */
+.contacts {
+    margin: 20px auto;
+    width: 90%;
+}
+
+#contactTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#contactTable th, #contactTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#contactTable th {
+    background-color: #f2f2f2;
+}
+
+/* Form Styles */
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contactForm label {
+    margin: 5px 0;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.returnLink {
+    margin-top: 20px;
+}
+
+/* Additional Styles can be added here ... */

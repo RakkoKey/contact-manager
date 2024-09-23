@@ -15,11 +15,11 @@
 
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="#"><i class="fas fa-bars"></i> </a></li>
-            <li><a href="#"><i class="fas fa-home"></i> </a></li>
-            <li><a href="#"><i class="fas fa-address-book"></i> </a></li>
-            <li><a href="#"><i class="fas fa-plus-circle"></i> </a></li>
-            <li><a href="#"><i class="fas fa-info-circle"></i> </a></li>
+            <li><a href="#"><i class="fas fa-bars" id="barsIcon"></i> </a></li>
+            <li><a href="#"><i class="fas fa-home" id="homeIcon"></i> </a></li>
+            <li><a href="#"><i class="fas fa-address-book" id="addressBookIcon"></i> </a></li>
+            <li><a href="#"><i class="fas fa-plus-circle" id="plusCircleIcon"></i> </a></li>
+            <li><a href="#"><i class="fas fa-info-circle" id="infoCircleIcon"></i> </a></li>
         </ul>
     </nav>
     
@@ -35,7 +35,7 @@
         <button id="searchButton">Submit</button><br>
         
     </div>
-    <div class="buttonContainer"></div>
+    <div class="buttonContainer">
         <button id="addButton">Add Contact</button>
     </div>
     <form class="contactForm hidden" id="addContact">
@@ -43,7 +43,7 @@
         <label for="firstName">First Name: </label>
         <input type="text" id="firstName" name="firstName"><br>
     
-        <label for="lastname">Last Name: </label>
+        <label for="lastName">Last Name: </label>
         <input type="text" id="lastName" name="lastName"><br>
 
         <label for="address">Address: </label>
