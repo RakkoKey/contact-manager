@@ -1,10 +1,91 @@
-body{
-    height: 100vh;
-    display:flex;
-    
-    align-items: center;
-    flex-direction: column;
+
+/* General Body Style */
+body {
+    font-family: 'Press Start 2P', cursive; /* Pixelated font style */
+    background-color: #2e2b26; /* Dark background to mimic Runescape */
+    color: #d4af37; /* Gold-like text */
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
-.returnToLogin{
-    display:flex;
+
+h1, h2 {
+    color: #f5d76e; /* Slightly lighter gold */
+    text-shadow: 2px 2px 4px #000000;
+}
+
+h3 {
+    color: #c7bba4;
+    text-shadow: 1px 1px 3px #000000;
+}
+
+/* Button Styles */
+button, input[type="submit"] {
+    background-color: #333; /* Dark button background */
+    color: #d4af37; /* Gold button text */
+    border: 2px solid #d4af37; /* Gold border */
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #444;
+    border-color: #f5d76e;
+    color: #f5d76e;
+}
+
+button:active, input[type="submit"]:active {
+    background-color: #222;
+    border-color: #d4af37;
+}
+
+/* Input Fields */
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
+    background-color: #444; /* Darker input fields */
+    border: 2px solid #d4af37; /* Gold border */
+    color: #f5d76e; /* Lighter gold text */
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+    outline: none;
+    border-color: #f5d76e;
+    background-color: #555;
+    color: #f5d76e;
+}
+
+/* Layout of Forms */
+form {
+    background-color: #3b3a36; /* Slightly lighter background for forms */
+    border: 2px solid #d4af37;
+    padding: 20px;
+    display: inline-block;
+    text-align: left;
+    margin: 20px auto;
+    border-radius: 10px;
+    width: 300px;
+}
+
+/* Footer Style */
+footer {
+    margin-top: 20px;
+    color: #d4af37;
+    font-size: 12px;
+}
+
+a {
+    color: #f5d76e;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
