@@ -3,14 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!--TODO: Wasn't sure if we want a separate css file for this-->
+    <title>Contact Manager</title>
     <link rel="stylesheet" href="contact.css">
-    <!--TODO: Not sure if I need this -->
-    <link rel="loginpage" href="index.html">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
     <script src="index.js" defer></script>
 </head>
 <body>
@@ -28,23 +23,26 @@
 
     <h1>Contact Manager</h1>
     <h2>Contacts</h2>
+
+    <!-- Updated search bar with form wrapper -->
     <div class="search">
-       
-        <div class="input-wrapper">
-            <span class="search-icon"><i class="fas fa-search"></i></span>
-            <input type="text" id="searchbar" placeholder="Search"><br>
-        </div>
-        <button id="searchButton">Submit</button><br>
-        
+        <form class="searchbar">
+            <div class="input-wrapper">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+                <input type="text" id="searchbar" placeholder="Search">
+            </div>
+            <button id="searchButton" type="submit">Submit</button>
+        </form>
     </div>
+
     <div class="buttonContainer">
         <button id="addButton">Add Contact</button>
     </div>
+
     <form class="contactForm hidden" id="addContact">
-        <!-- <span class="plus-icon"><i class="fas fa-plus"></i></span> -->
         <label for="firstName">First Name: </label>
         <input type="text" id="firstName" name="firstName"><br>
-    
+
         <label for="lastName">Last Name: </label>
         <input type="text" id="lastName" name="lastName"><br>
 
@@ -53,33 +51,34 @@
 
         <label for="email">Email: </label>
         <input type="text" id="email" name="email"><br>
-                
+
         <label for="phone">Phone Number: </label>
         <input type="text" id="phone" name="phone"><br>
-        
 
-        <input type="submit">
+        <input type="submit" value="Submit">
     </form>
+
     <div class="contacts">
-        <!--Name, Address, Email, Phone Number-->
+        <!-- Contacts Table -->
         <table id="contactTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Change</th>
-                </tr>
-            </thead>
-            <tbody id="contactsDisplay">
-
-            </tbody>
-            
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Change</th>
+            </tr>
         </table>
-
     </div>
-    
+
+</body>
+<footer>
+    <div class="returnLink">
+        <p><small>Return to Login Page - <a href="index.html">Here</a></small></p>
+    </div>
+</footer>
+</html>
+
     <!-- <div class="buttonContainer">
         <button id="addButton">Add Contact</button>
     </div>
@@ -103,18 +102,3 @@
 
         <input type="submit">
     </form> -->
-</body>
-<footer>
-    <div class="returnLink">
-        <p><small>
-            Return to Login Page - <a href="index.html">Here</a>
-        </small></p>
-    </div>
-</footer>
-
-
-
-
-
-
-</html>
