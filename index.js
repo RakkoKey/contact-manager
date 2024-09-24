@@ -209,7 +209,18 @@ function displayContacts(contacts) { //the contacts to display
             submitButton.addEventListener('click', function(){
                 console.log("test");
                 editButton.disabled = false;
-                
+                /*
+                let newFirstN = newFirst.value;
+                let newLastN = newLast.value;
+                let newAddressN = newAddress.value;
+                let newEmailN = newEmail.value;
+                let newPhoneN = newPhone.value;
+
+                if(newFirstN == ''){
+
+                }
+                */
+
                 editContact(newFirst.value, newLast.value, newAddress.value, newEmail.value, newPhone.value, contact.ID);
                 //remove everything
 
@@ -256,8 +267,8 @@ function clearContacts(){
     $('#contactTable > tbody').empty();
 }
 /* Function to search contacts */
-function searchContact() {
-    
+function searchContact(event) {
+    event.preventDefault();
     let searchQuery = document.getElementById('searchbar').value;
 
     if(searchQuery == '') {
@@ -555,7 +566,7 @@ function editContact(newFirst, newLast, newAddress, newEmail, newPhone, contactI
         //searchButton.addEventListener('submit', searchContact);
     //}
     if(searchButton){
-        searchButton.addEventListener('click', searchContact);
+        searchButton.addEventListener('submit', searchContact);
     }
     if(signupButton){
         signupButton.addEventListener('click', performSignup);
