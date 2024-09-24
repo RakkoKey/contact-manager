@@ -1,7 +1,7 @@
 const urlBase = "http://cop4331bena.xyz/API";
 const extension = "php";
 const signupButton = document.getElementById("signupForm");
-
+const returnToLogin = document.getElementById("returnToLogin");
 function signup(event){
     event.preventDefault();
     const data = new FormData(event.target);
@@ -55,3 +55,6 @@ function signup(event){
 
 }
 signupButton.addEventListener('submit', signup);
+returnToLogin.addEventListener('click', function(){
+    window.location.href = "index.html"; 
+})

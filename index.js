@@ -265,8 +265,8 @@ function clearContacts(){
     $('#contactTable tbody').empty();
 }
 /* Function to search contacts */
-function searchContact(event) {
-    event.preventDefault();
+function searchContact() {
+    
     let searchQuery = document.getElementById('searchbar').value;
 
     if(searchQuery == '') {
@@ -564,7 +564,7 @@ function editContact(newFirst, newLast, newAddress, newEmail, newPhone, contactI
         //searchButton.addEventListener('submit', searchContact);
     //}
     if(searchButton){
-        searchButton.addEventListener('submit', searchContact);
+        searchButton.addEventListener('click', searchContact);
     }
     if(signupButton){
         signupButton.addEventListener('click', performSignup);
